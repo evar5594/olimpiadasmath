@@ -52,25 +52,27 @@ public class Tipos_de_Solicitud {
 		 * //Thread.sleep(2500);
 		 */
 
-		WebElement cnt = otvardriver.findElement(By.xpath("//input[@value='Conectar']"));
+		WebElement cnt = otvardriver.findElement(By.xpath("//input[@type='submit'][@value='Conectar'][@onclick='return validarCaptcha()']"));
 		cnt.click();
 		
 
-		WebElement lin333 = otvardriver.findElement(By.xpath("//button[@title='Enlaces de Interés']"));
+		WebElement lin333 = otvardriver.findElement(By.xpath("//button[@aria-label='Enlaces de Interés'][@class='mdl-button btn_fast icons mdl-js-button mdl-button--icon'][@title='Enlaces de Interés'][@name='Enlaces de Interés'][@data-upgraded=',MaterialButton']"));
 		JavascriptExecutor ajs44 = (JavascriptExecutor) otvardriver;
 		ajs44.executeScript("arguments[0].click();", lin333);
 		
 
-		WebElement link2 = otvardriver.findElement(By.linkText("Mis aplicaciones"));
+		WebElement link2 = otvardriver.findElement(By.xpath("//a[@class='mdl-button mdl-js-button mdl-js-ripple-effect'][@title='Mis aplicaciones'][@href='/wps/myportal/udea/web/inicio/somos-udea/empleados/tramites-servicios-linea/mis-aplicaciones'][@data-upgraded=',MaterialButton,MaterialRipple'][text()='Mis aplicaciones ']"));
 		link2.click();
 		
 
-		WebElement iframeElement = otvardriver.findElement(By.xpath("//iframe[@src='https://link.udea.edu.co/misapps']"));
-		otvardriver.switchTo().frame(iframeElement);
 		
-		WebElement sibu = otvardriver.findElement(By.xpath("//span[text()='extension']/following::*[60]"));
+		  WebElement iframeElement = otvardriver.findElement(By.xpath("//iframe[@src='https://link.udea.edu.co/misapps']"));
+		  otvardriver.switchTo().frame(iframeElement);
+		 
+		
+		WebElement sibu = otvardriver.findElement(By.xpath("//span[@title='Sistema de Bienestar Universitario'][text()='extension'][@class='material-icons']"));
 		sibu.click();
-		
+		 
 		  
 	    for (String winHandle : otvardriver.getWindowHandles())
 	    { 
