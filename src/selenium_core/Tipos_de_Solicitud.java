@@ -36,11 +36,11 @@ public class Tipos_de_Solicitud {
 		WebElement linked2 = otvardriver.findElement(By.xpath("//a[@href='/wps/myportal/udea/web/inicio'][@title='Iniciar sesión'][text()='Iniciar sesión']"));
 		linked2.click();
 		
-		WebElement user = otvardriver.findElement(By.id("userLogin"));
+		WebElement user = otvardriver.findElement(By.xpath("//input[@type='text'][@name='userLogin'][@id='userLogin']"));
 		user.clear();
 		user.sendKeys("adalberto.montes");
 		
-		WebElement pass = otvardriver.findElement(By.id("passLogin"));
+		WebElement pass = otvardriver.findElement(By.xpath("//input[@type='password'][@name='passLogin'][@id='passLogin']"));
 		pass.clear();
 		pass.sendKeys("edilma04");
 
