@@ -30,10 +30,10 @@ public class Tipos_de_Solicitud {
 		 * , "Trámites administrativos", " Tipos de solicitud");
 		 */
 
-		WebElement link = otvardriver.findElement(By.id("menu-login-action"));
+		WebElement link = otvardriver.findElement(By.xpath("//button[@aria-label='Ingresar'][@id='menu-login-action'][@class='mdl-button login mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'][@title='Ingresar'][@name='Ingresar'][@data-upgraded=',MaterialButton,MaterialRipple']"));
 		link.click();
 		
-		WebElement linked2 = otvardriver.findElement(By.linkText("Iniciar sesión"));
+		WebElement linked2 = otvardriver.findElement(By.xpath("//a[@href='/wps/myportal/udea/web/inicio'][@title='Iniciar sesión'][text()='Iniciar sesión']"));
 		linked2.click();
 		
 		WebElement user = otvardriver.findElement(By.id("userLogin"));
