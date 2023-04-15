@@ -1,0 +1,893 @@
+as a technical guy or as a system engineer I must maintain a copy from each service--> the service copy is the interface.
+The service copy is the interface
+
+interface:
+----------
+interface is a service copy where I am going to maintain  all of our services (methods)| by default every service becomes
+of type public and abstract.
+        ====================
+
+How to define the interface to java 1.7 & below versions 
+-------------------------------------------------------
+
+Syntax:
+------
+<abstract> interface <interfacename>
+{
+;;;;;;;;;;;//services
+variables (static) + methods (abstract)
+}
+
+in the interface definition the keyword abstract is optional and by default every interface is abstract. Interface
+                                                                 ======================================  --------- 
+declaration follows the same syntax of class declaration.
+--------------------------------------------------------- 
+ If a class is having abstract methods the responsible to provide the implementations are the child classes.
+ By default every interface is the type abstract--> this sentence is proved with the following code:
+ 
+ //package core_java;
+interface BankAtm
+{
+
+}
+public class InterfaceTest
+{
+public static void main(String[] args)
+{
+   BankAtm otvar = new BankAtm();   
+}
+}
+  	
+javac InterfaceTest.java
+InterfaceTest.java:11: error: BankAtm is abstract; cannot be instantiated
+   BankAtm otvar = new BankAtm();
+                   ^
+1 error
+
+in line 23 class BankAtm was declared only as interface and by default the JVM  gives the status of abstract as is saw in 
+the compiler error. I can write the keyword abstract on the class definition which is completely optional.
+
+interface is a service copy where i am going to maintain all the services (methods).
+
+When i take variables inside the interface?
+A/
+when the data is a constant a long the project.
+
+by default every service/method becomes of type public and abstract --->the keywords public and abstract are optional i 
+===================================================================     can choose no write them in the method declaration
+
+---> void|returntype methodname (---);
+
+by default every interface is abstract
+========================================
+
+by default every variable inside the interface becomes of type: public static final
+==================================================================================
+ 
+public static final --->the keywords public static final are optional i can choose no write them in the variable declaration 
+
+if the variable is declared with another <as>/modifier as private| protected or default the compiler lunch up the 
+following errors:
+
+javac InterfaceTest.java
+InterfaceTest.java:4: error: modifier private not allowed here
+   private String bankName = "SBI";
+                  ^
+
+>javac InterfaceTest.java
+InterfaceTest.java:4: error: modifier protected not allowed here
+   protected String bankName = "SBI";
+                    ^
+If I declared the method with another modifier different from public and abstract i will get a compile error:
+
+javac InterfaceTest.java
+InterfaceTest.java:10: error: modifier private not allowed here
+   private void screenBalance();
+                ^
+1 error
+
+The BankAtm interface has several abstract methods.--> if a class has a least 1 abstract method its class must be 
+(mandatory) declared as abstract and to perform the methods implementation must be from child class or classes.
+
+in interface by default the class is abstract.
+
+if the child class is no declare as abstract it must have the implementations to all the abstract methods in the Parent 
+class to avoid the error:
+
+>javac InterfaceTest.java
+InterfaceTest.java:11: error: BankAtmImpl is not abstract and does not override abstract method balEnq() in BankAtm
+class BankAtmImpl implements BankAtm
+^
+1 error
+
+package core_java;
+interface BankAtm  //by default every interface becomes of type abstract
+{
+   public static final String bankName = "SBI";//by default every variable inside the interface becomes public static final
+   String bankContry = "INDIA";
+   public abstract void miniStmt(); // by default every method inside the interface becomes type public and abstract
+   abstract public void cashWitdraw();
+   abstract void pinChange();
+   void balEnq();
+}
+class BankAtmImpl implements BankAtm
+{
+   @Override
+   public void miniStmt()
+   {
+      System.out.println("MINI STMT");
+   }
+   @Override
+   public void cashWitdraw()
+   {
+      System.out.println("CASH WITDRAW");
+   }
+   @Override
+   public void pinChange()
+   {
+      System.out.println("PIN CHANGE");
+   }
+   @Override
+   public void balEnq()
+   {
+      System.out.println("BALANCE ENQUIRE");
+   } 
+}
+public class InterfaceTest
+{
+   public static void main(String[] args)
+   {
+   
+   }
+}
+
+
+package core_java;
+interface BankAtm
+{
+   public static final String bankName = "State Bank of India";
+   String bankContry = "INDIA";
+   public abstract void miniStmt();
+   abstract public void cashWitdraw();
+   abstract void pinChange();
+   void balEnq();
+}
+abstract class BankAtmImpl implements BankAtm //child class is responsible to implement the abstract methods | child class is responsible to interface's implementation
+{
+   @Override
+   public void miniStmt()
+   {
+      System.out.println("MINI STMT");
+   }
+   @Override
+   public void cashWitdraw()
+   {
+      System.out.println("CASH WITDRAW");
+   }
+   @Override
+   public void pinChange()
+   {
+      System.out.println("PIN CHANGE");
+   }
+   public void hardwork()
+   {
+      System.out.println("HARD WORK");
+   }
+}
+class BankAtmImplOne extends BankAtmImpl
+{
+   @Override
+   public void balEnq()
+   {
+      System.out.println("BALANCE ENQUIRE");
+   }
+   public void job()
+   {
+      System.out.println("JOB");
+   }  
+} 
+public class InterfaceTest
+{
+   public static void main(String[] args)
+   {
+      BankAtmImplOne otvar = new BankAtmImplOne();
+      otvar.miniStmt();
+      otvar.cashWitdraw();
+      otvar.pinChange();
+      otvar.balEnq();
+      otvar.hardwork();
+      otvar.job();
+      String bankNameResp = otvar.bankName;
+      System.out.println(bankNameResp);
+      String bankNameResp1 = BankAtm.bankName;
+      System.out.println(bankNameResp1);
+   }
+}
+MINI STMT
+CASH WITDRAW
+PIN CHANGE
+BALANCE ENQUIRE
+HARD WORK
+JOB
+State Bank of India
+State Bank of India
+
+INTERFACE
+Q) WHAT IS AN INTERFACE?
+A/
+Interface is a service copy where we are going to maintain all our services in the form of abstract.
+Inside the interface by default all i declare will be type abstract
+Interface is a service copy where we are going to define all our services--> by default every services / method will 
+become abstract.
+By default if is declare or not every interface become of type abstract.
+Inside the interface i can take variables and methods| by default every variable become of type  public static final.
+By default every method inside the interface become of type public and abstract.
+By default every interface becomes of type abstract.
+Inside the interface every method becomes public and abstract.
+If the interface is having abstract methods the responsible to provide implementation to those abstract methods are the 
+child classes.
+If the child class is not providing implementation completely a new child class must be declare to implement the methods 
+that weren't implemented by the other child class
+
+in the program above BankAtmImplOne is called an implemented class| fully implemented class| service class| 
+service provider class| or concrete class.
+
+//package core_java;
+interface BankAtm
+{
+   public static final String bankName = "State Bank of India";
+   String bankContry = "INDIA";
+   public abstract void miniStmt();
+   abstract public void cashWitdraw();
+   abstract void pinChange();
+   void balEnq();
+}
+abstract class BankAtmImpl implements BankAtm
+{
+   @Override
+   public void miniStmt()
+   {
+      System.out.println("MINI STMT");
+   }
+   @Override
+   public void cashWitdraw()
+   {
+      System.out.println("CASH WITDRAW");
+   }
+   @Override
+   public void pinChange()
+   {
+      System.out.println("PIN CHANGE");
+   }
+   public void hardwork()
+   {
+      System.out.println("HARD WORK");
+   }
+}
+class BankAtmImplOne extends BankAtmImpl
+{
+   @Override
+   public void balEnq()
+   {
+      System.out.println("BALANCE ENQUIRE");
+   }
+   public void job()
+   {
+      System.out.println("JOB");
+   }  
+} 
+public class InterfaceTest
+{
+   public static void main(String[] args)
+   {
+      /*BankAtmImplOne otvar = new BankAtmImplOne();
+      otvar.miniStmt();
+      otvar.cashWitdraw();
+      otvar.pinChange();
+      otvar.balEnq();
+      otvar.hardwork();
+      otvar.job();
+      String bankNameResp = otvar.bankName;
+      System.out.println(bankNameResp);
+      String bankNameResp1 = BankAtm.bankName;
+      System.out.println(bankNameResp1);*/
+      BankAtmImpl otvar = new BankAtmImplOne();
+      otvar.miniStmt();
+      otvar.cashWitdraw();
+      otvar.pinChange();
+      otvar.balEnq();
+      otvar.hardwork();
+      otvar.job();
+   }
+}
+
+
+javac InterfaceTest.java
+InterfaceTest.java:66: error: cannot find symbol
+      otvar.job();
+           ^
+  symbol:   method job()
+  location: variable otvar of type BankAtmImpl
+1 error
+
+the avobe error is due to Parent the class reference cannot access to child methods
+
+By creating child object using parent reference type I can only call or access parent the class methods and those ones 
+override by the child classes.
+By using Parent the class reference I am creating child class object.
+Under the Parent class reference we can access only to Parent the class methods
+Whenever I am creating child the class objects under the parent the class reference I only can access to Parent methods.
+
+My intention is access only to the interface BankAtm's abstract methods
+I need access only to the interface specific abstract methods.--> to do it I need to access them through creating an object by using interface reference name
+
+1. classname varname = new classname(); //valid
+2. parentclassname varname = new parentclassname(); //valid
+3. childclassname varname = new childclassname(); //valid
+4. parentclassname varname = new childclassname(); //valid
+5. childclassname varname = new parentclassname(); //Invalid
+6. abstractclassname varname = new abstractclassname(); //Invalid
+7. abstractclassname varname = new nonabstractclassname(); //valid
+8. interfacename varname = new interfacename(); //Invalid
+9. interfacename varname = new interfacefullyimplementedclass|fullyimplementedchildclass();  //valid
+
+     BankAtm     otvar   = new BankAtmImplOne();
+
+//package core_java;
+interface BankAtm
+{
+   public static final String bankName = "State Bank of India";
+   String bankContry = "INDIA";
+   public abstract void miniStmt();
+   abstract public void cashWitdraw();
+   abstract void pinChange();
+   void balEnq();
+}
+abstract class BankAtmImpl implements BankAtm
+{
+   @Override
+   public void miniStmt()
+   {
+      System.out.println("MINI STMT");
+   }
+   @Override
+   public void cashWitdraw()
+   {
+      System.out.println("CASH WITDRAW");
+   }
+   @Override
+   public void pinChange()
+   {
+      System.out.println("PIN CHANGE");
+   }
+   public void hardwork()
+   {
+      System.out.println("HARD WORK");
+   }
+}
+class BankAtmImplOne extends BankAtmImpl
+{
+   @Override
+   public void balEnq()
+   {
+      System.out.println("BALANCE ENQUIRE");
+   }
+   public void job()
+   {
+      System.out.println("JOB");
+   }  
+} 
+public class InterfaceTest
+{
+   public static void main(String[] args)
+   {
+      BankAtm otvar = new BankAtmImplOne();
+      otvar.miniStmt();
+      otvar.cashWitdraw();
+      otvar.pinChange();
+      otvar.balEnq();
+      String bankNameResp = otvar.bankName;
+      System.out.println(bankNameResp);
+      String bankNameResp1 = BankAtm.bankName;
+      System.out.println(bankNameResp1);
+   }
+}
+java InterfaceTest
+MINI STMT
+CASH WITDRAW
+PIN CHANGE
+BALANCE ENQUIRE
+State Bank of India
+State Bank of India
+ 
+in the above code By using interface reference name (BankAtm)I can create object from fully implemented class or from fully implemented child class.--> with that object I can only 
+access to the abstracts methods inside interface.
+whenever i am creating object by using interface reference name, under the interface reference I can access only interface specific methods.
+
+Until here is how Java version 1.7 and below versions work with interface. 
+
+assume that after the project is being implemented the client ask for a new abstract service / method if I write the method inside the interface I will receive the following error:
+The client from the SBI bank ask for the new service called void cashDeposit();
+
+All new services must be added to the service copy interface.
+
+When the new service / abstract method is added to the service copy(interface) the implementation lunch the following compile error:
+javac InterfaceTest.java
+InterfaceTest.java:34: error: BankAtmImplOne is not abstract and does not override abstract method cashDeposit() in BankAtm
+class BankAtmImplOne extends BankAtmImpl
+^
+1 error
+
+When a new abstract method or service is added to the existing interface, all the implementation classes (BankAtmImplOne) lunch up compile error as the above.
+whenever any new services are added to the existing interface, all the implementation classes are going to be impacted with compile error.
+
+To avoid this impact Java people introduce implementation inside the interface from java version 1.8 and forwards.
+Whenever I add any new services to the existing interface, all the implementation classes are going to get compile errors, to avoid this impact java people introduce from java 
+version 1.8 and forwards versions the implementations of new services inside the interface. 
+
+
+From java 1.7 and below inside the interface i only take abstract methods
+
+Java people introduce implementation inside the interface from java 1.8 and forward versions in the form of default methods and static methods.
+Why they introduce implementations inside the interface?
+means whenever in java 1.7 and below version i add any new services (new business requirements) to the existing interface--> the existing service copy--> all the implementation classes will lunch compile errors
+
+Java 1.8:
+=========
+implementations inside the interface in the form of:
+1. static methods
+2. default methods
+
+Q) When do we go for static methods inside the interface?
+A/
+static methods:
+---------------
+Whenever the business implementation are constants--> they are no going to be changed and no one is allow to change the behavior, if i want to create read only services/methods
+
+Q) How to define static methods? 
+
+<as> static void|returntype methodname(---)
+{
+;;;;;;;;;;;
+return stmt;
+}
+	
+interface static methods inside the interface will not available to child class implementations
+interface static methods are know as read only methods | utility methods
+interface static methods is not possible override them outside the interface--> is not possible override in the child class
+interface static methods can be override only interface name
+
+Q) When do we go for default methods inside the interface?
+A/
+default methods:
+-----------------
+Whenever the business implementation are no constant or going to be changes
+
+Q) How to define d methods? 
+
+default void|returntype methodname(---)
+{
+;;;;;;;;;;;
+return stmt;
+}
+
+default methods are available to implemented classes
+default methods can be override inside the child classes by replacing the default keyword for public in the child class
+How i can access the default method from the child class?
+A/
+Through child the class object
+
+From java 1.9 version and forwards inside the interface I can take private methods in form of static and non-static:
+
+
+interface BankAtm
+{
+   public static final String bankName = "State Bank of India";
+   String bankContry = "INDIA";
+   public abstract void miniStmt();
+   abstract public void cashWitdraw();
+   abstract void pinChange();
+   void balEnq();
+   //void cashDeposit();
+  //void accountCreation();
+   public static void cashDeposit()
+   {
+      System.out.println("CASH DEPOSIT");
+   }
+   default void accountCreation()
+   {
+      System.out.println("ACCOUNT CREATION");
+   }
+   private static void hello1()
+   {
+      System.out.println("HELLO1");
+   }
+   private void hello2()
+   {
+      System.out.println("HELLO2");
+   }
+}
+ the above code compile with java 1.8 lunches the following compile error:
+ javac InterfaceTest.java
+InterfaceTest.java:20: error: modifier private not allowed here
+   private static void hello1()
+                       ^
+InterfaceTest.java:24: error: modifier private not allowed here
+   private void hello2()
+                ^
+InterfaceTest.java:25: error: interface abstract methods cannot have body
+   {
+   ^
+InterfaceTest.java:56: error: BankAtmImplOne is not abstract and does not override abstract method hello2() in BankAtm
+class BankAtmImplOne extends BankAtmImpl
+^
+4 errors
+***********************************************************************************************************************************
+
+
+Java 1.7 and below:
+==================
+Inside the interface I can only have abstract methods
+
+java 1.8
+Inside the interface I can have implementations in the form of abstract methods--> default and static methods
+
+java 1.9 
+Inside the interface I can have private static ans non-static methods.
+
+Inside the interface can i take the implementations?
+A/
+Yes
+
+What are the different types of interfaces?
+Types of interfaces:
+===================
+1. marker interface (Cloneable RamdomAccess Serializable..)
+2. functional interface
+   @FuntionalInterface
+3. partially abstract interface
+4. fully abstract interface
+
+What is marker interface?
+a marker interface has 0 methods:
+
+interface Demo
+{
+
+}
+interface Demo is a marker interface due it has 0 method
+
+What is functional interface?
+a functional  interface has exactly 1 abstract method and any number of implemeted methods
+@FunctionalInterface
+interface Demo2
+{
+   void job();
+}
+
+if the functional interface doesn't have the abstract method the compile lunch the following error:
+
+@FunctionalInterface
+interface Demo2
+{
+ 
+}
+javac InterfaceTest.java
+InterfaceTest.java:6: error: Unexpected @FunctionalInterface annotation
+@FunctionalInterface
+^
+  Demo2 is not a functional interface
+    no abstract method found in interface Demo2
+1 error
+---
+interface Demo
+{
+//this is a marker interface it doesn't have any method
+}
+@FunctionalInterface
+interface Demo2
+{
+   void job();
+   public static void subject()
+   {
+      System.out.println("SUBJECT");
+   }
+}
+@FunctionalInterface
+interface Demo3 extends Demo2
+{
+   void nights();
+}
+
+javac InterfaceTest.java
+InterfaceTest.java:15: error: Unexpected @FunctionalInterface annotation
+@FunctionalInterface
+^
+  Demo3 is not a functional interface
+    multiple non-overriding abstract methods found in interface Demo3
+1 error
+
+this error is due to--> 
+1.Trough inheritance whatever the parents are having by default will be available to child.
+Inheritance concept is applicable to 2 levels:
+- Class level
+- interface level
+2. @FunctionalInterface annotation means that the interface only can have 1 abstract method.
+
+---
+
+3. partially abstract interface
+partially abstract interface can have any number of abstract methods and any number of implemented methods:
+
+
+interface Demo4 extends Demo3
+{
+   void job1();
+   void job2();
+   void job3();
+   void job4();
+   public static void creditCard()
+   {
+      System.out.println("CREDIT CARD");
+   }
+   public static void savingAccount()
+   {
+      System.out.println("SAVING ACCOUNT");
+   }
+} 
+
+----
+
+4. Fully abstract interface --> Java 1.7 & below
+is the interface is having only abstracts methods:
+
+interface Fully
+{
+   void job5();
+   void job6();
+   void job7();
+   void job8();
+}
+
+----------
+
+extends vs implements
+
+What is the difference between extends vs implements?
+
+C1	C2	C3 (Classes)				I1	I2	I3(Interfaces)
+
+C1 extends C2  // Valid
+I1 extends I2  // Valid
+
+C1 extends C2, C3  // InValid --> multiple inheritance is not allowed in java
+I1 extends I2, I3  // Valid
+
+C1 extends I1  // InValid --> a class extends only another class
+I1 extends C1  // InValid --> a interface extends only another Interface
+
+C1 implements I1  // Valid
+C1 implements I1, I2, I3...  // Valid
+
+C1 extends C2 implements I1 // Valid
+C1 extends C2 implements I1, I2, I3... // Valid
+
+C1 implements I1 extends C2 // InValid
+C1 implements C2 //InValid
+I1 implements C1 //InValid
+I1 implements I2 //InValid
+
+If I have Parent class C1, Sub class C2, Child class C3, then Can I write C3 extends C1?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+Q) When do we go for default methods?
+A/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

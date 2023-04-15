@@ -1,0 +1,209 @@
+OOPS Concepts:
+--------------
+1. Data hiding
+2. Data abstraction
+3. Encapsulation
+   Tightly encapsulation
+4. IS-A relationship (inheritance)
+5. HAS-A relationship
+6. Polymorphism
+   Overloadiang
+   Overriding
+ 7 Cohesion & Coupling
+ 
+ 1. Data hiding: I have a lap-top, in my lap-top I have some data, I want to protect my lap-top's data, generally I protect my lap-top data creating
+    an user and a password, in the 
+    same way: DATA HIDING means-->  internal data shouldn't go directly, our internal data shouldn't go directly, after the validation only if the 
+    user and the password are valid
+    then the access to the data is allowed. Means that having a lap-top I protect the data through an user and password and only can access to the 
+    data authorized persons; in the
+    same way DATA HIDING means: our internal data shouldn't go directly, after validation if the user and password are valid then is allowed the data access. In Java the 
+    DATA HIDING is implemented by using " private " modifier at variable level.
+    
+ 2. Data abstraction: Data abstraction means: just hide the set up business services, by hiding the internal implementations, Just expose the set up the business services by hiding
+    internal implementation --> This is the mechanism of data abstraction --> means: with this ATM example i will see: On the ATM screen I can see the set up business services like:
+    - Cash deposit
+    - Cash withdraw
+    - statement
+    - Balance
+    - PIN change
+    - Valid the card
+    - PIN number and account number validation
+    Each of this services have got business internal implementations (some logics), the business implementations are not hide, are hide the internal implementations.
+    Q) What is data abstractio?
+       A/The business services are exposed and the internal implementations are hide.
+       Is the mechanism of data abstraction.
+       The applications doesn't hide the business implementation they hide the internal implementation.
+       The advantages of data abstraction --> set up the business services by hiding internal implementations--> 
+       In java data abstraction is implemented through abstract interfaces.
+       
+3. Encapsulation: is the process of wrapping the data into a container -->java classes are the best example to define encapsulation, in a java class all the data is wrapped.
+   class HardWork
+   {    
+   ;;;;;;;;;;;;;;;;
+   }
+   
+   Tightly encapsulation: all the variables in the class are of type private, the methods can be any type but variables must be of type private. --> practice the swap n1 for n2
+   doing the swap in main method, reassign the data n1<--n2 and n2<--n1 with the object type variable. see class EncapsulationTest.java
+   package core_java;
+
+package core_java;
+
+class EncapsulationDemo
+{
+	 int practHrs = 9;
+	 String hardwork = "result";
+	
+	public void hello() {
+		System.out.println(practHrs+" "+hardwork);
+	}
+}
+
+public class EncapsulationTest {
+public static void main(String[] focus) {
+	EncapsulationDemo demo = new EncapsulationDemo();
+	demo.hello();
+	
+	demo.practHrs = 5;
+	demo.hardwork = "Edwin";
+	demo.hello();
+}
+}
+
+
+Different classes of Java:
+class Pojo
+class Service
+class Entity
+class Bin
+class Concrete 
+class Abstract
+
+POJO class:
+-----------
+1. private variables (non-static & static)
+2. getter() methods --> get values from the private type variables, by using getter methods I can access private type variables outside the class.
+3. setter() methods --> by using setter methods I can set(give | assign)  values to private type variables outside the class
+4. Doesn't contains any business implementations--> never talks of any business implementations
+
+POJO = Plain Old Java Object --> Pojo class contains private type variables that can be  of type (non-static & static) and contains getter() methods and setter() methods; 
+don't containsany business implementation -> Pojo class is a big assistant to the service classes.
+
+getter() methods: ->2. getter() methods --> get values from private type variables, by using getter methods I can access private variables outside the class.
+-----------------
+How to define getter() methods:
+--------------------------------
+<as> returntype getXxxxxx()
+{
+return variablename;
+}
+
+<as> static returntype getXxxxx()
+{
+return variablename;
+}
+
+class HardWork
+{
+private int practHrs = 9;
+private String hardWork = "result";  //How to access these 2 variables outside the class HardWork?
+public int getPracHrs()
+{
+return practHrs;
+}
+public String getHardWork()
+{
+return hardWork;
+}
+}
+
+setter() methods:
+-----------------
+How to define setter() methods:
+---------------------------------
+<as> void setXxxxxx(datatype varname)
+{
+
+}
+
+
+method parameters are local variables
+
+read keywords this and final in part1 notes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   

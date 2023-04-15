@@ -1,0 +1,144 @@
+1. Data hiding
+2. Data abstraction
+3. Encapsulation
+
+POJO class:
+----------
+ POJO
+ ===== --> stands for Plain Old Java Object, which doesn't contains any business implementation.
+       --> Doesn't contains any business implementation.
+       --> stands for Plain Old Java Object,  which never talk about business implementation. 
+       --> Only contains the private type variables and the corresponding getter and setter methods.
+       
+POJO class:
+-----------
+1. private variables (non-static & static)
+2. getter() methods --> get values from the private type variables, by using getter methods I can access private type variables outside the class.
+3. setter() methods --> by using setter methods I can set(give | assign)  values to private type variables outside the class
+4. Doesn't contains any business implementations--> never talks of any business implementations.
+
+The POJO class give a big assist to the Service class.
+
+*********************Q) What is the difference between tightly encapsulation class and POJO class?**************Personal search
+
+getter() methods: ->2. getter() methods --> get values from private type variables, by using getter methods I can access private variables outside the class.
+
+If there are private type variables declarations their scope is only inside the class, if is needed access them outside the class, it must be through getter() methods
+
+How to define getter() methods:
+--------------------------------
+<as> returntype getXxxxxx()
+{
+return variablename;
+}
+
+<as> static returntype getXxxxxx()
+{
+return variablename;
+}
+
+<as>:
+----
+Specifies the scope, the <as> in getter() methods definition  must be always public, because the intention of these methods is get the private type variables outside the class
+
+returntype: return type.
+
+getXxxxxx(): get+private type variable name--> getVariablename()--> the standard is after the word get the variable name must be first letter in upper case letter
+
+return variablename;--> What variable I want to return. Writing it identical--> copy and paste. --> this variable is not a local type variable
+
+class HardWork
+{
+private int practHrs = 9;            //non-static private variable practHrs, its value is 9 and its scope is only inside the HardWork class
+private String hardwork = "result";  //non-static private variable hardwork, its value is result and its scope is only inside the HardWork class
+}
+
+Q) If I need to access to practHrs and  hardwork variables How to do it?
+A/ With getter() methods.--> following its syntax:
+
+<as> returntype getXxxxxx()
+{
+return variablename;
+}
+
+public int getpractHrs()
+{ 
+return practHrs;
+}
+
+public String gethardwork()
+{
+return hardwork;
+}
+
+The class HardWork with its private variables and its getter() methods is:
+
+class HardWork
+{
+private int practHrs = 9;
+private String hardwork = "result";
+public int getPractHrs()
+{
+return practHrs;
+}
+public String getHardwork()
+{
+return hardwork;
+} 
+} 
+
+Q) I want to perform initialization of the following variables in class HardWork, How to do it?
+A/ Through setter() methods--> by using setter methods I can set the private type variables values.
+
+class HardWork
+{
+private int practHrs;
+private String hardwork;
+private static String name;
+private double sal;
+}
+
+A/ Through setter methods
+
+setter() methods:
+-----------------
+How to define setter() methods:
+
+<as> void setXxxxxx(datatype varname)
+{
+;;;;;;;;;;;;;;
+}
+
+<as> static void setXxxxxx(datatype varname)
+{
+;;;;;;;;;;;;;;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

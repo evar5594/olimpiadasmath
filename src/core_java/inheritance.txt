@@ -1,0 +1,457 @@
+class EncapsulationDemo
+{
+private int practHrs = 9;
+private String hardwork = "result";
+public void hello()
+{
+System.out.println(practHrs+" "+hardwork);
+}
+public int getPractHrs() 
+{
+	return practHrs;
+}
+public String getHardwork()
+{ 
+	return hardwork;
+}
+}
+public class EncapsulationTest
+{
+public static void main(String[] args)
+{
+EncapsulationDemo demo = new EncapsulationDemo();
+demo.hello();
+}
+}
+
+Q) What is the difference between a POJO class and a tightly encapsulation class?
+A/a Tightly encapsulation class contains private variables, getter() and setter() methods and the business implementations, whereas a Pojo class never contains the business 
+implementations, Pojo clasees only contains the correspond private variables and the getter() and setter()methods.
+
+flipkart application has 3 modules (men, women, kids) each with its own methods:
+--------------------
+men
+ login()
+ clothes()
+ logout()
+ 
+women
+ login()
+ gold | jewellery()
+ logout()
+ 
+kids
+ login()
+ toys()
+ logout()
+ 
+ class Fp_Men
+{
+public void login()
+{
+;;;;;;;;;;;;;;;;;
+System.out.println("login()");
+}
+public void clothes()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("clothes");
+}
+public void logout() {
+;;;;;;;;;;;;;;;
+System.out.println("logout");
+}
+}
+class Fp_Women
+{
+public void login()
+{
+;;;;;;;;;;;;;;;;;
+System.out.println("login()");
+}
+public void gold_jewerly()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("gold_jewerly");
+}
+public void logout() {
+;;;;;;;;;;;;;;;
+System.out.println("logout");
+}
+}
+class Fp_Kids
+{
+public void login()
+{
+;;;;;;;;;;;;;;;;;
+System.out.println("login()");
+}
+public void toys()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("toys");
+}
+public void logout() {
+;;;;;;;;;;;;;;;
+System.out.println("logout");
+}
+}
+public class InheritenceTest {
+public static void main(String[] args) {
+}
+}
+
+In these 3 classes there are 2 common services in the business implementation to each class, they are login() and logout(). Duplicate these services is not a good practice. Java 
+mechanism to avoid duplicate code is called WORA Mechanism, WORA-->Stand for Write Once Read|Reuse Any number of times.
+
+WORA MECHANISM
+WORA
+----
+Reuse the code ---> code re-usability.-> to re-use the code the concept is inheritance, the keyword to do inheritance in java is extendss
+In java WORA must be implemented to avoid dupLicate code.
+
+Inheritance---> extendss
+
+after saw that there are 2 common services to the 3 classes the duplicate code is removed:
+
+//package core_java;
+class Fp_Men
+{
+public void login()
+{
+;;;;;;;;;;;;;;;;;
+System.out.println("login()");
+}
+public void clothes()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("clothes");
+}
+public void logout() {
+;;;;;;;;;;;;;;;
+System.out.println("logout");
+}
+}
+class Fp_Women
+{
+public void gold_jewerly()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("gold_jewerly");
+}
+}
+class Fp_Kids
+{
+public void toys()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("toys");
+}
+}
+public class InheritenceTest {
+public static void main(String[] args) {
+}
+}
+
+then the services removed are taken from class Fp_Men through inheritance with the keyword extendss.
+1. By using inheritance we can implement WORA mechanism
+2. By using inheritance we can avoid the duplicate code and get the code re-usability.
+3. By using inheritance we can get the properties from one class to another class.
+4. The class which is extendsing is known or called child class which is extendsed by the parent class--> child class and parent class.
+5. Through inheritance whatever the parents is having by default will be available to every child.
+6. The parent class is also called base class or super class.
+7. The child class is also called sub-class.
+
+-->After remove the duplicate code the inheritance is used:
+//package core_java;
+class Fp_Men
+{
+public void login()
+{
+;;;;;;;;;;;;;;;;;
+System.out.println("login()");
+}
+public void clothes()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("clothes()");
+}
+public void logout() {
+;;;;;;;;;;;;;;;
+System.out.println("logout");
+}
+}
+class Fp_Women extendss Fp_Men 
+{
+public void gold_jewerly()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("gold_jewerly");
+}
+}
+class Fp_Kids extendss Fp_Men
+{
+public void toys()
+{
+;;;;;;;;;;;;;;;;;;;;;
+System.out.println("toys()");
+}
+}
+public class InheritenceTest {
+public static void main(String[] args) 
+{
+//1. creating parent class object
+Fp_Men fp_men = new Fp_Men();  // after creating parent's class object, whenever parent class OT variable is created, under its reference I can access only to its methods or services
+fp_men.login();
+fp_men.clothes();
+fp_men.logout();
+//2. creating child class object
+Fp_Women fp_women = new Fp_Women();
+fp_women.login();
+fp_women.clothes();
+fp_women.gold_jewerly();
+fp_women.logout();
+//3. creating child class object by using parent class reference
+Fp_Men fp_men = new Fp_Women(); 
+fp_men.login();
+fp_men.clothes();
+fp_men.logout();
+fp_men.gold_jewerly();
+}
+}
+
+When this program is executed:
+1) the control comes to the main method(line 201)
+2) then the fp_men object is created
+3) and then login() method in line 205 is accessing and calling on fp_men --> with ctrl + click i can check what is the object reference-> in this case the reference is class
+ Fp_Men 
+4) in class Fp_Men is there a method called login()? --> to check it on line 204 over the class Fp_Men-> ctrl + click to go to Fp_Men class definition and check its implementation
+5) yes there is a login() method
+6) then the login() method is happily executed.
+
+in line 209 is created the child class object fp_women, whenever a child class object is created, under the child reference it can be accessed both parent and child class's 
+methods. 
+Through inheritance whatever the parents are having by default will be available to child--> ctlr + click over the reference and over the class to check, what is happening is the
+fallowing:
+1) The JVM already has the program control
+2) In line 208 is created the child class object: whenever I am creating a child class object, under the class reference we can access both parent class and child class methods.
+3) login() method in line 210 is accessing or calling OT reference fp_women from class Fp_Women->ctrl + click to jump to the class then again ctrl + click on the class to jump to
+class implementation and see if is there a login() method.
+4) is the login() method inside the Fp_Women class implementation?
+A/ No, login() method is not there then the program check if the method is inside the parent class implementation-> over the parent class ctrl + click and there the login() 
+method is found and happily the method is going to be executed.
+5) method clothes() follow the same steps as login() method.
+
+in line 214 was creates the fp_men child class object using the parent class reference Fp_Men. The parent class is Fp_Men. Whenever I create a child class object by using parent
+class reference, under the parent class reference I can access only to parent's class methods, if is tried to access to a child class method the compiler launch the following 
+error:
+InheritenceTest.java:50: error: variable fp_men is already defined in method main(String[])
+Fp_Men fp_men = new Fp_Women();
+       ^
+InheritenceTest.java:54: error: cannot find symbol
+fp_men.gold_jewerly();
+      ^
+  symbol:   method gold_jewerly()
+  location: variable fp_men of type Fp_Men
+2 errors
+
+//4. creating parent class object by using child class reference
+Fp_Women fp_women = new Fp_Men();
+
+
+Q) A child can hold a parent?
+A/No a child cannot hold a parent. Line 259 causes the following compile error:
+
+InheritenceTest.java:56: error: incompatible types: Fp_Men cannot be converted to Fp_Women
+Fp_Women fp_women = new Fp_Men();
+                    ^
+1 error.
+
+Inheritance summary:
+
+Q) What is inheritance?
+A/
+Through Inheritance I can implement WORA mechanism. By using inheritance I can implement WORA mechanism.
+
+Q) What is WORA mechanism?
+A/
+WORA: Stand for Write Once Reuse | Read Any number of times.
+By using inheritance is avoided duplicate code and we can get code re-usability
+Q)How inheritance is achieve?
+The inheritance is achieve through the keyword extends, by using extends keyword I can achieve inheritance
+By using inheritance we can get the properties from one class to another class-> the child class get the properties from parent class.
+
+The inheritance is applicable at 2 levels:
+1. Inheritance at class level
+2. Inheritance at interface level
+
+Until here in class InheritanceTest.java I can see inheritance a class level --> one class or parent class extends to a child class.
+
+Parent class is called as base class or super class
+child class is called subclass
+
+WORA Mechanism
+WORA---->Write One Re-use | Read Any number of times
+Avoid duplicate code
+Reuse the code ---> code re-usability
+Inheritance---> extendss
+We can get data from one class to another class.
+
+whenever I am creating parent the class object --> Fp_Men fp_men = new Fp_Men(); under the parent class reference I can access only parents the class methods no child the class
+methods.
+
+Whenever I creating child the class object --> Fp_Women fp_women = new Fp_Women(); under the child class reference I can access both parent and child classes methods
+
+By creating child class object using parent the class reference--> Fp_Men fp_men = new Fp_Women(); under the parent class reference I can access only to parent class methods but
+no child the class methods
+
+Fp_Women fp_women = new Fp_Men();--> By creating parent class object using child class reference--> THIS IS NOT POSSIBLE!
+
+class Fp_Women extendss Fp_Men --> Q) Is class Fp_Women having the data of  Fp_Men? A/ true the keyword extendss do it possible.
+class Fp_Women --> Q) Is class Fp_Women having the data of  Fp_Men? A/ false
+
+Inheritance is called IS-A Relationship
+
+Q) What is IS-A relationship?
+A/
+is inheritance
+
+There different types of inheritance:
+1. Single level inheritance
+2. Multi level inheritance
+3. Multiple level inheritance
+4. Hybrid inheritance
+
+1. Single level inheritance:
+----------------------------
+if the class is extendsing only one class at a time--> A extends B; B extends D.
+
+2. Multi level inheritance:
+---------------------------
+class A extends B; class B extends class C; class C extends class D.....
+
+3. Multiple inheritance:
+-------------------------
+In java multiple inheritance is not allowed at class level.--> if the class is extendsing more than one class at a time--> class A extends B, C, D if this is tried the compiler launch the 
+following error:
+InheritenceTest.java:27: error: '{' expected
+class Fp_Kids extendss Fp_Women, Fp_Men.
+
+In java Multiple inheritance is allowed at interface level
+
+Q)Why multiple inheritance is not allowed at level class in java?
+A/
+
+class Demo1
+{
+hello();
+}
+class Demo2
+{
+hello();
+}
+class Demo3 extends Demo1, Demo2
+{
+public static void main(String[] args)
+{
+Demo3 demo = new Demo3();
+demo.hello();
+}
+}
+
+method hello() in line 358 is calling or accessing OT variable demo, demo is an object type Demo3 class->ctrl + click to check if the class Demo3 has got a hello() method,
+class Demo3 implementation has not the hello() method, the the program will check its parents in Demo1 implementation is hello() method and in class Demo2 implementation also
+is hello() method, this is ambiguity--> Ambiguity is the reason which multiple inheritance is no allowed in java.
+
+
+class Demo
+{
+
+}
+
+Q) How many methods has got class Demo?
+A/
+
+public class Demo {
+	public static void main(String[] args) {
+		Demo demo = new Demo();
+		demo.clone();
+		demo.equals();
+		demo.finalize();
+		demo.getClass();
+		demo.hashCode();
+	    demo.notify();
+	    demo.notifyAll();
+	    demo.toString();
+	    demo.wait();
+	    demo.wait(0);
+	    demo.wait(0);
+		}
+}
+
+By default every java class extends Object class, class Object has 11 methods internally. For all the java classes Object is the parent class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 

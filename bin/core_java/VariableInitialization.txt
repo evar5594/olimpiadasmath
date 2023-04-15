@@ -1,0 +1,352 @@
+How to perform initialization of variables:
+===========================================
+1. Direct initialization
+2. Through object
+3. Through console
+4. Through constructor
+
+1. Direct initialization:
+========================
+int a = 456;
+
+2. Through object:
+===================
+ClassName otvar = new ClassName(); 
+Variable_Initialization otvar = new Variable_Initialization(); --> this sentence create an object along with a static copy, I can create
+any number of objects which ones will share the same static copy.
+
+import java.util.Scanner;
+
+class Variable_Initialization
+{
+   int practHrs;
+   String result;   
+}
+public class Variable_Initialization_Execution 
+{
+   public static void main(String[] args)
+   { 
+      System.out.println("Initialization Through Object");
+      Variable_Initialization otvar = new Variable_Initialization();
+      System.out.println(otvar.practHrs+" "+otvar.result);
+      otvar.practHrs = 9; 
+      otvar.result = "JOB";
+      System.out.println(otvar.practHrs+" "+otvar.result);
+
+      Variable_Initialization otvar2 = new Variable_Initialization();
+      System.out.println(otvar2.practHrs+" "+otvar2.result);
+      otvar2.practHrs = 14;
+      otvar2.result = "JOB in tata";
+      System.out.println(otvar2.practHrs+" "+otvar2.result );
+
+   }
+}
+
+
+3. Through console: 
+===================
+to read the values from the console the Scanner class has the following methods:
+
+class Scanner
+{
+   public Scanner(-)
+   {
+      
+   }
+   public String next();
+   public int nextInt();
+   public float nextFloat();
+   public double nextDouuble();
+   ;;;;;;;;;;;
+}
+
+import java.util.Scanner;
+
+class Variable_Initialization
+{
+   int practHrs;
+   String result;
+   Scanner getInput = new Scanner(System.in);
+
+   public int through_Console()
+   { 
+      System.out.println(practHrs+" "+result);
+      System.out.println("Enter Number of hours to practice");
+      int var1 = getInput.nextInt();
+      practHrs = var1;
+      System.out.println("The Number of hours to practice is "+var1);
+      System.out.println("Enter the result");
+      String var2 = getInput.next();
+      System.out.println("The result is "+var2);
+      return var1;
+   }   
+}
+public class Variable_Initialization_Execution 
+{
+   public static void main(String[] args)
+   { 
+      System.out.println("Initialization Through console");
+      Variable_Initialization otvar3 = new Variable_Initialization();
+      otvar3.through_Console();
+   }
+}
+
+
+4. Through constructor:
+=======================
+
+What is a constructor?
+A/
+By using constructors I can perform initialization of variables, so constructor is a mechanism which is used to perform variables
+                                                                    ------------------------------------------------------------
+                                                                    initialization 
+                                                                    --------------
+In order to perform the initialization of an object or variables there are 2 types of constructors: 
+
+1. default constructors
+=======================
+
+default constructor are the constructors with 0 parameters
+
+Syntax:
+-------
+<as> constructorname()
+{
+   ;;;;;;;;;;;
+}
+
+<as>: public, private, default, protected
+constructorname() must be the same as the class name otherwise i will get compile error.
+
+When the default constructor is going to be executed?
+The constructor is automatically executed when a class's object is created.
+Whenever i create the object, automatically the constructor is executed.
+Whenever i use the new operator, internally an object is going to be created along with the static copy, all the non-static variables and 
+non-static methods will be inside the object and static variables and static methods will be inside the static copy and then the default 
+constructor is going to be executed (do the graph on visio).
+
+If the class have 0 constructors, compiler always generates the default constructor.
+
+If the class have at least 1 constructor, compiler doesn't generate any constructor.
+
+whenever the constructor's syntax has the keyword public as <as> I can create objects inside the class, outside the class too 
+
+What is the constructor?
+By using constructor I can do the variables's initialization
+ 
+
+.........................................................................................................................................
+
+2. parameterised constructors
+=============================
+
+parameterised constructor are the constructors with  parameters
+
+Syntax:
+-------
+<as> constructorname(datatype varname1, datatype varname2... )
+{
+   ;;;;;;;;;;;
+}
+
+
+When the class is having 0 constructors, the compiler generates the default constructor
+
+class ConsOne
+{
+
+}
+
+if the class is having at least 1 constructor, then the compiler never generates any constructor.
+
+When the constructors are going to be executed?
+when ever I create an object the constructors are going to be executed.
+
+public Variable_Initialization(int practHrs, String result)
+{
+   ;;;      
+}  
+ int practHrs, String result are local variables to the constructor and my tarjet is initialized the same variables at class level, to do it
+ is through keyword 'this.' with the keyword 'this.' the priority can be changed or assigned to variables at class level:
+ 
+ //package core_java;
+
+import java.util.Scanner;
+
+class Variable_Initialization
+{
+   int practHrs;
+   String result;
+   Scanner getInput = new Scanner(System.in);
+
+   public int through_Console()
+   { 
+      System.out.println(practHrs+" "+result);
+      System.out.println("Enter Number of hours to practice");
+      int var1 = getInput.nextInt();
+      practHrs = var1;
+      System.out.println("The Number of hours to practice is "+var1);
+      System.out.println("Enter the result");
+      String var2 = getInput.next();
+      System.out.println("The result is "+var2);
+      return var1;
+   }
+   public Variable_Initialization()
+   {
+      System.out.println("Default constructor --> 0 parameter, name equal to class name. Automatically executed with object creation ");   
+   } 
+   public void doHardWork()
+   {  
+      Variable_Initialization otvar4 = new Variable_Initialization(); 
+      System.out.println("Do hardwork");
+   }
+   public Variable_Initialization(int practHrs, String result )
+   {
+      this.practHrs = practHrs; 
+      this.result = result;  
+   } 
+  /* public Variable_Initialization(int pract, String res )
+   {
+      practHrs = pract; 
+      result = res;  
+   } */
+}
+public class Variable_Initialization_Execution 
+{
+   public static void main(String[] args)
+   { 
+      System.out.println("Variable Initialization Through Object--> otvar");
+      Variable_Initialization otvar = new Variable_Initialization();
+      System.out.println(otvar.practHrs+" "+otvar.result);
+      otvar.practHrs = 9; 
+      otvar.result = "JOB";
+      System.out.println(otvar.practHrs+" "+otvar.result);
+
+      System.out.println("Variable Initialization Through Object--> otvar2");
+      Variable_Initialization otvar2 = new Variable_Initialization();
+      System.out.println(otvar2.practHrs+" "+otvar2.result);
+      otvar2.practHrs = 14;
+      otvar2.result = "JOB in tata";
+      System.out.println(otvar2.practHrs+" "+otvar2.result );
+
+      System.out.println("Variable Initialization Through console");
+      Variable_Initialization otvar3 = new Variable_Initialization();
+      otvar3.through_Console();
+
+      otvar3.doHardWork();
+
+      System.out.println("Variable Initialization Through constructor");
+      Variable_Initialization otvar4 = new Variable_Initialization(18, "JOB AS AUTOMATED TESTER");
+      System.out.println(otvar4.practHrs+" "+otvar4.result);
+   }
+}
+ 
+ The constructor can be overloaded, overload is applicable at 2 levels: method level and constructor level.
+
+Automatic promotion concept is applicable for methods and constructors:
+
+//package core_java;
+
+import java.util.Scanner;
+
+class Variable_Initialization
+{
+   int practHrs, num;
+   String result;
+   Scanner getInput = new Scanner(System.in);
+
+   public int through_Console()
+   { 
+      System.out.println(practHrs+" "+result);
+      System.out.println("Enter Number of hours to practice");
+      int var1 = getInput.nextInt();
+      practHrs = var1;
+      System.out.println("The Number of hours to practice is "+var1);
+      System.out.println("Enter the result");
+      String var2 = getInput.next();
+      System.out.println("The result is "+var2);
+      return var1;
+   }
+   public Variable_Initialization()
+   {
+      System.out.println("Default constructor --> 0 parameter, name equal to class name. Automatically executed with objects creation ");   
+   } 
+   public void doHardWork()
+   {  
+      Variable_Initialization otvar4 = new Variable_Initialization(); 
+      System.out.println("Do hardwork");
+   }
+   public Variable_Initialization(int practHrs, String result )
+   {
+      this.practHrs = practHrs; 
+      this.result = result;  
+   } 
+  /* public Variable_Initialization(int pract, String res )
+   {
+      practHrs = pract; 
+      result = res;  
+   } */
+   public Variable_Initialization(int num)
+   {
+      this.num = num;
+   }
+}
+public class Variable_Initialization_Execution 
+{
+   public static void main(String[] args)
+   { 
+      System.out.println("Variable Initialization Through Object--> otvar");
+      Variable_Initialization otvar = new Variable_Initialization();
+      System.out.println(otvar.practHrs+" "+otvar.result);
+      otvar.practHrs = 9; 
+      otvar.result = "JOB";
+      System.out.println(otvar.practHrs+" "+otvar.result);
+
+      System.out.println("Variable Initialization Through Object--> otvar2");
+      Variable_Initialization otvar2 = new Variable_Initialization();
+      System.out.println(otvar2.practHrs+" "+otvar2.result);
+      otvar2.practHrs = 14;
+      otvar2.result = "JOB in tata";
+      System.out.println(otvar2.practHrs+" "+otvar2.result );
+
+      System.out.println("Variable Initialization Through console");
+      Variable_Initialization otvar3 = new Variable_Initialization();
+      otvar3.through_Console();
+
+      otvar3.doHardWork();
+
+      System.out.println("Variable Initialization Through constructor");
+      Variable_Initialization otvar4 = new Variable_Initialization(18, "JOB AS AUTOMATED TESTER");
+      System.out.println("From parameterised constructor (1 int, 1 String) -> "+otvar4.practHrs+" "+otvar4.result);
+      Variable_Initialization otvar5 = new Variable_Initialization(27);
+      System.out.println("From parameterised constructor (1 int) -> "+otvar5.num);
+      Variable_Initialization otvar6 = new Variable_Initialization('a');
+      System.out.println("From parameterised constructor (1 char 'a') ...Testing automated promotion -> "+otvar6.num);
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

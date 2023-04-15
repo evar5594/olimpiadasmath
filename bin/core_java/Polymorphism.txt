@@ -1,0 +1,402 @@
+Inheritance --> IS-A relationship
+Inheritance--> extends keyword
+Inheritance--> WORA Mechanism
+Inheritance--> code re-usability
+Inheritance--> Avoid duplicate code
+Inheritance--> Get the properties from one class to another class
+Inheritance--> There are different types of inheritance: Single level inheritance, Multi level inheritance, Multiple level inheritance, Hybrid inheritance
+Inheritance --> creating parent class object, creating child class object, creating child class object by using parent class reference, 
+                creating parent class object by using child class reference
+                
+For a single question ask to a  single person the person could response different things depending who is asking, e,g:
+to Where are you? A/ in multiple ways-> is giving the response in multiple ways
+Where are you?
+Responding in multiple ways----> is the mechanism of overloading
+Q) What is overloading?
+A/
+overloading occurs when the same person is responding in multiple forms to a single question.
+
+The same method is responding in multiple forms---> this is the mechanism of overloading
+
+Through inheritance all the parents are having by default will be available to child.
+
+The child is over-reading the study() method and job()method, due he says I don’t study and I don’t want job.
+Q) What is over-reading?
+A/Through inheritance whatever the parents are having by default will be available to child, if the child is no satisfied with parent class implementation, then the child class
+ can changed it to do its own implementation.
+ 
+Q) What is polymorphism?
+Poly stand for many
+morphism --> representing
+Polymorphism-->many ways to represent something
+Polymorphism-->Representing 1 thing in many forms
+Polymorphism--> is a mechanism.
+Polymorphism--> Overloading and over-reading.
+
+Assume that we have a calculator in hands, the calculator has several modules:sum, average, sqtr, exp. and so on, I am going to assume that I will work on sum module, the business 
+implemetation will estay in class OverLoadingDemo
+
+//package core_java;
+class OverLoadingDemo
+{
+int num1 = 75, num2 = 225;
+public int addition()
+{
+int result = num1 + num2;
+System.out.println("Result is "+result);
+return result;  
+}
+} 
+public class OverLoadingTest
+{
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition();//300
+objtypevar.addition();//300
+objtypevar.addition();//300
+objtypevar.addition();//300
+objtypevar.addition();//300
+objtypevar.addition();//300
+}
+}
+
+In all the calling or accessing from  addition() method to objtypevar the result will be 300--->Q) THIS RESULT(300) IS STATIC OR DINAMIC? A/ STATIC RESULT BUT THE NUMBERS ARE
+DYNAMIC.
+With a calculator in hand the user can enter any pair of numbers for that reason the numbers are dynamic to do it the int variables declare a class level must be place inside the
+method as arguments:
+
+//package core_java;
+class OverLoadingDemo
+{
+public int addition(int num1, int num2)
+{
+int result = num1 + num2;
+System.out.println("Result is "+result);
+return result;  
+}
+} 
+public class OverLoadingTest
+{
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition(75, 225);
+}
+}
+
+In line 84 addition addition() method is calling to OT  objtypevar (that is a OT variable from class OverLoadingDemo()) with 2 int values, the calling check in line 83 that 
+objtypevar is of type OverLoadingDemo class, then the calling check in line 70 is the OverLoadingDemo class has a method with 2 parameters of type int, the method receive
+the parameters and do the implementation.
+
+in line int 72 num1, int num2 are called method parameters or method arguments and they are local variables--> they scope is only inside the method.
+the OT can receive several calls from addition() with different int values:
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition(75,225);
+objtypevar.addition(75012,225225);
+}
+}
+
+the int values in the call (lines 97 and 98) are the numbers that the user enter to the calculator.
+
+Same method name with different parameters is the mechanism of over-loading
+
+Q) What is the mechanism of overloading?
+A/
+Overloading is presented when the same method name receive different types of parameters: in class OverLoadingDemo the addition() method receive parameters of type int,float and 
+double ---> Overloading---> addition() method is an overloading method
+
+class OverLoadingDemo
+{
+public int addition(int num1, int num2)
+{
+int result = num1 + num2;
+System.out.println("int int Result is "+result);
+return result;  
+}
+public float addition(float num1, float num2)
+{
+float result = num1 + num2;
+System.out.println("float float Result is "+result);
+return result;  
+}
+public double addition(double num1, double num2)
+{
+double result = num1 + num2;
+System.out.println("double double Result is "+result);
+return result;  
+}
+
+Automated promotion is present in method overloading and consist if there are not a method with float parameters and the user enter floats and the class has a double method floats
+values are automatically promoted:
+
+//package core_java;
+class OverLoadingDemo
+{
+public int addition(int num1, int num2)
+{
+int result = num1 + num2;
+System.out.println("int int Result is "+result);
+return result;  
+}
+/*public float addition(float num1, float num2)
+{
+float result = num1 + num2;
+System.out.println("float float Result is "+result);
+return result;  
+}*/
+public double addition(double num1, double num2)
+{
+double result = num1 + num2;
+System.out.println("double double Result is "+result);
+return result;  
+}
+} 
+public class OverLoadingTest
+{
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition(75,225);
+objtypevar.addition(75012,225225);
+objtypevar.addition(75012.23568f,225225.23568f);
+objtypevar.addition(7599.23,9999.2356);
+}
+}
+in this code the addition method in line 144 are commented and the user in line 165 are sending float values, the program promote those ones to be attended by method in line 
+150--> this is called automated promotion in java.
+
+Q) WHAT IS AUTOMATIC PROMOTION IN OVERLOADING METHOD?  
+A/
+byte--->short--->int--->long--->float--->double
+				char	
+
+//package core_java;
+class OverLoadingDemo
+{
+/*public int addition(int num1, int num2)
+{
+int result = num1 + num2;
+System.out.println("int int Result is "+result);
+return result;  
+}
+public float addition(float num1, float num2)
+{
+float result = num1 + num2;
+System.out.println("float float Result is "+result);
+return result;  
+}*/
+public double addition(double num1, double num2)
+{
+double result = num1 + num2;
+System.out.println("double double Result is "+result);
+return result;  
+}
+public long addition(long num1, long num2)
+{
+long result = num1 + num2;
+System.out.println("int int Result is "+result);
+return result;  
+}
+} 
+public class OverLoadingTest
+{
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition(-75,0);
+objtypevar.addition(-238,1);
+objtypevar.addition(75,225);
+objtypevar.addition('a','b');
+objtypevar.addition(75012.23568f,225225.23568f);
+objtypevar.addition(7599.23,9999.2356);
+}
+}
+
+in this program automatic promotion is done, the program only has the same method with 2 different parameter: long and double--> the user enter values byte, short,  integer and 
+char that are promoted to be implemented by method with long parameters in the same way float values enter by the user will be received by the method with double parameter.
+
+SUMMARIZE 
+Overloading: is a concept which is applicable at two levels:
+- Class level
+- Method level
+Q) WHAT IS METHOD OVERLOADING?
+A/
+Same method name with different parameters--> is the mechanism of method overloading
+
+OVERLOADING SUMMARY
+Overloading is a concept which is applicable at two levels:
+- Class level
+- Method level
+
+Q)WHAT IS METHOD OVERLOADING? ---> At method level
+A/
+Same method name with different parameters is the mechanism of method overloading.
+If the exact method is not there it looks for automatic promotions.
+
+In general there are 2 things to happen:
+
+1. Method resolution
+-------------------
+Means method is there or not?
+
+2. Method execution
+--------------------
+Means method is going to be executed
+
+
+class OverLoadingDemo
+{
+public double addition(double num1, double num2)
+{
+double result = num1 + num2;
+System.out.println("double double Result is "+result);
+return result;  
+}
+public long addition(long num1, long num2)
+{
+long result = num1 + num2;
+System.out.println("int int Result is "+result);
+return result;  
+}
+} 
+public class OverLoadingTest
+{
+public static void main(String[] args)
+{
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+objtypevar.addition(-75,0);
+objtypevar.addition(-238,1);
+objtypevar.addition(75,225);
+objtypevar.addition('a','b');
+objtypevar.addition(75012.23568f,225225.23568f);
+objtypevar.addition(7599.23,9999.2356);
+}
+}
+
+in this program in line 270 the method addition() with 2 integers is calling the variable objtypevar of type OverLoadingDemo, in line 269 is confirmed that objtypevar is an object
+from the class OverLoadingDemo, then the method resolution check is the class has a method called addition that can receive 2 integer values--> method resolution.
+If the resolution method doesn't find a method or the method doing the calling the compiler launch the following error:
+objtypevar.addition1(-75,0);
+          ^
+  symbol:   method addition1(int,int)
+  location: variable objtypevar of type OverLoadingDemo
+1 error
+
+OverLoadingDemo objtypevar = new OverLoadingDemo();
+      reference type           runtime object
+
+In overloading, the method resolution happens or run in reference type area.
+In overloading, the method execution happens or run in reference type area.
+
+for this reason overloading in known as early binding or static polymorphism.
+Method overloading is an example of static polymorphism--> early binding.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

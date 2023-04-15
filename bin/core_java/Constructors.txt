@@ -1,0 +1,218 @@
+when ever a class doesn't have any constructor, that mean, 0 constructor, then the compiler always is  going to generates the default 
+constructor.
+If I don't have any constructor inside the class ( class Constructor_One) the compiler is always generates the default 
+constructor with the super() constructor call mechanism
+
+class Constructor_One
+{
+//0 constructor
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+class Constructor_One extends Object
+{
+   public Constructor_One()
+   {
+      super(); // call to generate the default constructor due to class Constructor_One has 0 constructor 
+   }
+}
+
+Key words this and super:
+=========================
+this:
+===== 
+By using key word this I can refer current class's  non-static methods and current class's  
+non-static variables.--> the priority goes to class level not to local or method level. if I try to use it in a static 
+method i will get a compile error:
+error: non-static variable this cannot be referenced from a static context
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+super:
+=====
+By using the keyword super I can refer Parent the class variables and Parent the class methods, except inside the static
+methods. If the keyword super is tried to use inside the static method i will get a compile error:
+error: non-static variable super cannot be referenced from a static context
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+(Methods) constructors this() and super():
+=========================
+constructors call.
+
+this()====> Which refers Current class default constructor.--> doesn't have parameters
+this(5)====> Which refers Current class 1 int parameterised constructor.
+this("java", 56.23)====> Which refers Current class 1 String 1 double parameterised constructor.
+this('j',"demo", 456)====>
+this("java")===>
+;;;;;;;;;;;;;;;;;;;
+
+super()===>Which refers Parent class default constructor.
+super(5)===>Which refers Parent class 1 int parameterised constructor.
+super("java", 56.23)====> Which refers Parent class 1 String 1 double parameterised constructor.
+super('j',"demo", 456)====>
+super("java") 
+
+class Constructor_One
+{
+//0 constructor
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+class Constructor_One extends Object
+{
+   public Constructor_One()
+   {
+      super(); // call to generate the default constructor due to class Constructor_One has 0 constructor 
+   }
+}
+ 
+   
+By using constructor I can perform variable's initialization and object's initialization
+There are 2 types of constructors--> default constructor and parameterized constructor.
+The default constructor is the constructor with 0 parameters.
+default constructor syntax:
+<as> constructorname
+{ 
+
+}
+the constructor with parameters is called parameterized constructor.
+
+The default constructor is automatically executed when an object is created with the operator new.
+The parameterized constructor can be overloaded and the automated promotion concept is applicable.
+If the class has 0 constructor then the compiler generates the default constructor but if the class has at least 1 
+constructor the compiler never generates the default constructor.   
+class Constructor_Calls_Test1
+{
+   public Constructor_Calls_Test1()
+   {
+      super();
+      System.out.println("Default Constructor_Calls_Test1() Parent class--> 0 parameter, name equal to class name. Automatically executed with objects creation ");
+   }
+}
+class Constructor_Calls_Test extends Constructor_Calls_Test1
+{
+   public Constructor_Calls_Test()
+   {
+      super();
+      System.out.println("Default Constructor_Calls_Test() Child class--> 0 parameter, name equal to class name. Automatically executed with objects creation ");
+   }
+   public Constructor_Calls_Test(String str)
+   {
+      super();
+      System.out.println("Parameterized Constructor_Calls_Test(1 String) Child class, name equal to class name.");
+   }
+}
+public class Constructors_Execution
+{
+   public static void main(String[] args)
+   {
+      Constructor_Calls_Test otvar2 = new Constructor_Calls_Test();
+      Constructor_Calls_Test otvar3 = new Constructor_Calls_Test("Java Certification");   
+   }
+} 
+the program execution goes to the main method where, otvar2 is an object from default Constructor_Calls_Test(), the operator new lunch 
+the execution to the default Constructor_Calls_Test(), then in the execution of the default Constructor_Calls_Test() the first statement 
+is the super() call mechanism (if the programmer don't write it, the JVM do it by default) once there the control goes to Parent class's 
+Constructor_Calls_Test1() where the first statement is the super() call mechanism, then this call is to its Parent class, the Parent class 
+is the class Object where the default constructor is going to be executed first in the Parent class to the default 
+Constructor_Calls_Test1() and then to the Child class to default Constructor_Calls_Test()
+
+java.lang.Object
+Class Object is the root of the class hierarchy.Every class has Object as a superclass. All objects,including arrays, implement the 
+methods of this class.
+
+class Constructor_One
+{
+//0 constructor
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+class Constructor_One extends Object
+{
+   public Constructor_One()
+   {
+      super(); // call to generate the default constructor due to class Constructor_One has 0 constructor 
+   }
+}
+
+if i don't to create object to call the parameterized constructor with:
+//Constructor_Calls_Test otvar3 = new Constructor_Calls_Test("Java Certification"); 
+I really want to call all with only 1 object creation.
+If i change the super() call mechanism to this() call mechanism as first statement inside the default constructor this happen:
+
+javac Constructors_Execution.java
+Constructors_Execution.java:13: error: recursive constructor invocation
+   public Constructor_Calls_Test()
+          ^
+1 error
+due to all the time this() call mechanism is calling the default constructor.
+
+To use this() call mechanism must be place the argument(s) to the parameterized constructor, that call search inside the current class
+the constructor that match the argument inside the call to be execute and the control of the program continue according with the 
+statements inside the parameterized constructor:
+
+class Constructor_Calls_Test1
+{
+   public Constructor_Calls_Test1()
+   {
+      super();
+      System.out.println("Parent class->Default Constructor_Calls_Test1()--> 0 parameter, name equal to class name. Automatically executed with objects creation ");
+   }
+}
+class Constructor_Calls_Test extends Constructor_Calls_Test1
+{
+   public Constructor_Calls_Test()
+   {
+      //super();
+      this("Java Certification 2023");
+      System.out.println("Child class->Default Constructor_Calls_Test()--> 0 parameter, name equal to class name. Automatically executed with objects creation ");
+   }
+   public Constructor_Calls_Test(String str)
+   {
+      super();
+      System.out.println("Child class->Parameterized Constructor_Calls_Test(1 String), name equal to class name. "+str);
+   }
+}
+public class Constructors_Execution
+{
+   public static void main(String[] args)
+   {
+      Constructor_Calls_Test otvar2 = new Constructor_Calls_Test();
+      //Constructor_Calls_Test otvar3 = new Constructor_Calls_Test("Java Certification");   
+   }
+} 
+java Constructors_Execution
+Parent class->Default Constructor_Calls_Test1()--> 0 parameter, name equal to class name. Automatically executed with objects creation
+Child class->Parameterized Constructor_Calls_Test(1 String), name equal to class name. Java Certification 2023
+Child class->Default Constructor_Calls_Test()--> 0 parameter, name equal to class name. Automatically executed with objects creation.
+
+   public Constructor_Calls_Test()
+   {
+      //super();
+      this("Java Certification 2023");
+      super();
+      System.out.println("Child class->Default Constructor_Calls_Test()--> 0 parameter, name equal to class name. Automatically executed with objects creation ");
+   }
+   
+>javac Constructors_Execution.java
+Constructors_Execution.java:17: error: call to super must be first statement in constructor
+      super();
+           ^
+1 error
+>javac Constructors_Execution.java
+Constructors_Execution.java:18: error: call to this must be first statement in constructor
+      this();
+          ^
+1 error
+ 
+Constructors call must be first statement in constructors
+the constructor call mechanism super() ans this()  is only applicable inside the constructors 
+
+
+
+
+ 
+   

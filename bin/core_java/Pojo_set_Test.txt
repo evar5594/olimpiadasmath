@@ -1,0 +1,244 @@
+class PojoSetDemo
+{
+private int practHrs;
+private String hardWork;
+private static String name;
+private double sal;
+public int getPractHrs()
+{
+return practHrs;
+}
+public String getHardWork()
+{
+return hardWork;
+}
+public static String getName()
+{
+return name;
+}
+public double getSal()
+{
+return sal;
+}
+}
+public class Pojo_set_Test
+{
+public static void main(String[] args)
+{
+PojoSetDemo demo = new PojoSetDemo();
+System.out.println(demo.getPractHrs());
+System.out.println(demo.getHardWork());
+System.out.println(demo.getName());
+System.out.println(demo.getSal());
+}
+}
+
+When this program is executed the JVM send the control to the main method, then the variable Object type demo is going to be created, variable OT demo is called by the method 
+getPractHrs() --> demo is an Object variable type of class PojoSetDemo, in PojoSetDemo there is the method getPractHrs() inside this method is the return statement --> return practHrs;
+which is not a local variable then the priority goes to class level where is the variable, the variable hasn't any value then the JVM call the default methods who assign the default 
+values.--> this process is done to all the methods calling demo variable.
+
+Business logic--> The program mustn't show the default values it must be values assigned by the programmer--> then I go for setter() methods. 
+By using setter() methods I can set up the private variable values. 
+Syntax:
+-------
+<as>: always should be public.
+return type should be always void
+setVariablename(datatype variablename )
+
+setter() methods:
+-----------------
+How to define setter() methods:
+
+<as> void setXxxxxx(datatype varname)
+{
+;;;;;;;;;;;;;;
+}
+
+<as> static void setXxxxxx(datatype varname)
+{
+;;;;;;;;;;;;;;
+}
+
+public void setPractHrs(int practHrs)
+{
+
+} 
+
+with the setter() methods I can give values to the private class level variables.
+
+class PojoSetDemo
+{
+private int practHrs;
+public void setPractHrs(int practHrs)  //1. Through this setter() method I want to assign the value to the class level variable practHrs
+{
+                                       //3.once the value is in the method parameter it must be passed or sent to the class level variable to do this inside the only stament in 
+practHrs=practHrs;                       the methods body I must written an assignment statement as   practHrs=practHrs;--> assignment operator = on right hand side will be assign 
+                                         to the left hand side. right hand side is always the data value and the left hand side becomes in the variable.
+                                         Local variable: Whenever a local variable is declared inside the methods, inside the looping statements, control statements; here is also 
+                                         a local variable declaration--> inside the method parameter or method argument there is the local variable declaration --> 
+                                         public void setPractHrs(int practHrs) and the initialization is on the method body-->practHrs=practHrs;
+                                        Method's parameter are local variables.
+}
+}
+public class Pojo_set_Test
+{
+public static void main(String[] args)
+{
+PojoSetDemo demo = new PojoSetDemo();
+demo.setPractHrs(9);//--------------->2.The value as a programmer i want to assign to the class level variable is 9, as the method is declared inside the class PojoSetDemo the demo
+                                        object can see the method and then this happend:
+                                        is there a setter() method setPractHrs() with integer?
+                                         A/ yes it is 9,this value goes to the local variable parameter inside the  setPractHrs(int 9) == setPractHrs(int PractHrs)
+                                            
+                                       
+}
+}
+
+public static void main(String[] args)
+{
+PojoSetDemo demo = new PojoSetDemo();
+demo.setPractHrs(9);---------------------->// is there a setter() method setPractHrs() with integer?
+                                            A/ yes it is 9,this value goes to the local variable parameter inside the  setPractHrs(int 9) == setPractHrs(int PractHrs)
+                                            once the value is in the method parameter it must be passed or sent to the class level variable to do this inside the only stament in 
+                                            the methods body I must written an assignment statement as   practHrs=practHrs;--> assignment operator = on right hand side will be assign 
+                                            to the left hand side. right hand side is always the data value and the left hand side becomes in the variable.
+                                            
+}
+}
+
+class PojoSetDemo
+{
+private int practHrs;
+private String hardWork;
+private static String name;
+private double sal;
+public void setPractHrs(int practHrs)
+{
+practHrs=practHrs;
+}
+public void setHardWork(String hardWork)
+{
+hardWork=hardWork;
+}
+public void setName(String name)
+{
+name=name;
+}
+public void setSal(double sal)
+{
+
+}
+public int getPractHrs()
+{
+return practHrs;
+}
+public String getHardWork()
+{
+return hardWork;
+}
+public static String getName()
+{
+return name;
+}
+public double getSal()
+{
+return sal;
+}
+}
+public class Pojo_set_Test
+{
+public static void main(String[] args)
+{
+PojoSetDemo demo = new PojoSetDemo();
+demo.setPractHrs(9);
+demo.setHardWork("Never fail");
+demo.setName("Edwin Alberto Vargas Montoya");
+demo.setSal(23000000.4589d);
+System.out.println(demo.getPractHrs());
+System.out.println(demo.getHardWork());
+System.out.println(demo.getName());
+System.out.println(demo.getSal());
+}
+}
+
+When this program is executed it displays the default values assigned by the JVM to the class level variables names, the values assigned through setter() methods are not displays because by
+default the priority is always given on level class variables names. To give the priority to local variables names i must use the keyword this:
+
+class PojoSetDemo
+{
+private int practHrs;
+private String hardWork;
+private static String name;
+private double sal;
+public void setPractHrs(int practHrs)
+{
+this.practHrs=practHrs;
+}
+public void setHardWork(String hardWork)
+{
+this.hardWork=hardWork;
+}
+public void setName(String name)
+{
+this.name=name;
+}
+public void setSal(double sal)
+{
+this.sal=sal;
+}
+public int getPractHrs()
+{
+return practHrs;
+}
+public String getHardWork()
+{
+return hardWork;
+}
+public static String getName()
+{
+return name;
+}
+public double getSal()
+{
+return sal;
+}
+}
+public class Pojo_set_Test
+{
+public static void main(String[] args)
+{
+PojoSetDemo demo = new PojoSetDemo();
+demo.setPractHrs(9);
+demo.setHardWork("Never fail");
+demo.setName("Edwin Alberto Vargas Montoya");
+demo.setSal(125000.5);
+System.out.println(demo.getPractHrs());
+System.out.println(demo.getHardWork());
+System.out.println(demo.getName());
+System.out.println(demo.getSal());
+}
+}
+
+
+In the above program the keyword this is mandatory due to the class level variables and local variables have got the same name and is necessary tell to the
+program will have the priority, as programer in this case I want to assign the values in setter() methods that have got the same variables name and to do it 
+is mandatory the keyword this.
+
+It is possible no use the same class level variables names inside the method's parameter in that case the keyword this is optional 
+
+private type variables's class PojoSetDemo doesn't have any value, they have default values, I want to do-perform an initialization to each of them. To perform the initialization 
+must be through setter methods due to they are private type variables. The JVM will call default values
+
+How to define setter methods:
+-----------------------------------
+                                              Xxxxx
+<as> void setXxxxxx(datatype varname)    //setVariable
+{
+;;;;;;;;;;;;;;
+}
+
+<as> static void setXxxxxx(datatype varname)
+{
+;;;;;;;;;;;;;;
+} 

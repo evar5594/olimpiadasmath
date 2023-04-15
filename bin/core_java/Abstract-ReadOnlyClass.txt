@@ -1,0 +1,775 @@
+For a class how many objects you can crate?
+A/ Any number of objects can be created but only a static copy will be create which will be share with all the objects. Even if there are 2000 objects created from the class, only 1 static copy will be created and shared with them.
+SINGLETON DESIGN PATTERNà When the 2000 objects are created, internally only 1 object will be created.(read and search about this pattern)
+
+Through Object Type Variables, variables values can be reassignment. Some times is needed those values only to be read no to change them.
+Through @Override i can reassign parent's methods.
+
+When the behavior of a class cannot be changed that is, it is only allow to access not to change anything--> not to change the behavior of the class.
+
+I want to stop the object creation of a class--> I go for abstract
+
+In the moment a class is declared as abstract, create objects from that class is no allowed
+
+javac ReadOnlyClassTest.java
+ReadOnlyClassTest.java:17: error: ReadOnlyDemo is abstract; cannot be instantiated
+                ReadOnlyDemo otvar = new ReadOnlyDemo();
+                                     ^
+ To stop the methods to be overrode they must be declared as a static methods, the variables inside the body methods must be also static
+ 
+to read the class from the main method the only approach is calling by its name:
+
+package core_java;
+
+abstract class ReadOnlyDemo
+{
+	static int practHours = 9; 
+	static String result = "JOB";
+	
+	static public void hello()
+	{
+		System.out.println(practHours+"**************************"+result);
+	}
+}
+public class ReadOnlyClassTest
+{
+	public static void main(String[] args)
+	{
+		System.out.println(ReadOnlyDemo.practHours);
+		System.out.println(ReadOnlyDemo.result);
+		ReadOnlyDemo.hello();
+	}
+}
+
+ReadOnlyClass ---> ABSTRACT
+
+Q) WHAT IS A READONLYCLASS?
+A/
+A ReadOnlyClass is a class in where changes are no allowed and in which read and access are allowed but not changes
+
+Q) IN HOW MANY FORMS IS POSSIBLE DO THE CHANGES OF A CLASS?
+Q) IN HOW MANY WAYS WE CAN CHANGE THE BEHAVIOR OF THE CLASS?
+A/
+There are 2 ways to change the class's behavior:
+1. Through object
+2. Override --> by overriding
+
+Q) HOW CAN I STOP THE OBJECT CREATION?
+A/
+Declaring the class as abstract i can stop the objects's class creation
+
+Q)WHAT IS ABSTRACT AND WHAT IS SAID ABSTRACT INTERFACE?
+A/
+Q)WHAT IS ABSTRACT AND WHAT IS SAID ABSTRACT INTERFACE AND HOW DO YOU IMPLEMENT THEM IN REAL TIME?
+
+ABSTRACT CLASS LEVEL is implemented in the class above
+
+abstract:
+=========
+abstract is a keyword that is applicable at:
+1. class level --> I cannot create objects from that class
+2. method level
+3. interface level
+
+a) abstract vs class:
+---------------------
+class Demo
+{
+
+}
+to this class is possible create objects due to isn't declare as abstract
+
+abstract class Demo
+{
+
+}
+to this class is not possible object creation due is declared as abstract
+
+Q) WHEN DO WE GO FOR ABSTRACT METHODS?
+A/
+abstract vs methods:
+===================
+;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;//40 requirements 
+When we go for abstract methods?
+whenever i know the service but I don't know the implementation. Means I know the requirement (the service) but in future i will go to provide the implementation.
+When i know the service but i don't know the implementation. 
+when a web site announces the black Friday will give x% off I have to wait to that date to take the service or the implementation while the date is no coming the service is not
+available it is to take it in the future. I cannot access the offers right now, they are hiding their services.
+I know the requirement or service that i will implement in the future. 
+
+I must assume that i am in the requirement gallery stage with the client and the requirements were for example 40 requirements I began with the first 20 y for the other 20 that 
+i will implement in the future of the project i go for abstract methods.
+
+How to define abstract methods:
+------------------------------
+abstract <as> void|returntype methodname (---);
+<as> abstract void|returntype methodname (---);
+
+abstract methods don't have body, brace to open {nor curly brace to close }
+every abstract method ends with semicolon;	
+abstract methods doesn't contain body method
+
+package core_java;
+
+class AbstractDemo
+{
+	public void doHardWork()
+	{
+		System.out.println("HARDWORK = JOB");
+	}
+		
+}
+public class AbstractTest
+{
+	public static void main(String[] args)
+	{
+		AbstractDemo otvar = new AbstractDemo();
+	}
+}
+
+this code has the implement method doHardWork() it is very different from an abstract method definition.
+-->abstract method doesn't have body method 
+-->implement method doHardWork() has body curly braces that enclose the implementation.
+
+//package core_java;
+
+class AbstractDemo
+{
+	public void doHardWork() //implemented method
+	{
+		System.out.println("HARDWORK = JOB");
+	}
+	abstract public void job();
+}
+public class AbstractTest
+{
+	public static void main(String[] args)
+	{
+		AbstractDemo otvar = new AbstractDemo();
+		otvar.doHardWork();
+	}
+}
+
+javac AbstractTest.java
+AbstractTest.java:3: error: AbstractDemo is not abstract and does not override abstract method job() in AbstractDemo
+class AbstractDemo
+^
+1 error
+
+whenever i am having at least 1 abstract method in the class I must declare that class as abstract to avoid the above error.--> the java creator defined that once there are at least
+1 abstract method the class must be abstract too, otherwise the empty implementation from the abstract method could be instantiated in the main method and it is an empty
+implementation
+
+package core_java;
+
+abstract class AbstractDemo
+{
+	public void doHardWork()
+	{
+		System.out.println("HARDWORK = JOB");
+	}
+	abstract public void job();
+		
+}
+public class AbstractTest
+{
+	public static void main(String[] args)
+	{
+		AbstractDemo otvar = new AbstractDemo();
+		otvar.doHardWork();
+	}
+}
+
+line 177 causes the following error:
+>javac AbstractTest.java
+AbstractTest.java:16: error: AbstractDemo is abstract; cannot be instantiated
+                AbstractDemo otvar = new AbstractDemo();
+                                     ^
+1 error
+
+When a class is not abstract i can create objects from her.
+When a class is abstract i cannot create objects from her.
+
+package core_java;
+
+abstract class AbstractDemo
+{
+	public void doHardWork()
+	{
+		System.out.println("HARDWORK = JOB");
+	}
+	public void subjectFirstJobNext()
+	{
+		System.out.println("SUBJECT FIRST JOB NEXT");
+	}
+	abstract public void job();
+	public abstract void subject();
+		
+}
+public class AbstractTest
+{
+	public static void main(String[] args)
+	{
+		
+	}
+}
+
+This class contains 2 implemented methods and 2 abstract methods.
+
+If the class is having abstract methods. Who is the responsible to provide the implementations?
+A/
+Child classes are the responsible to provide the implementations for the abstracts methods:
+
+package core_java;
+
+abstract class AbstractDemo
+{
+	public void doHardWork()
+	{
+		System.out.println("HARDWORK = JOB");
+	}
+	public void subjectFirstJobNext()
+	{
+		System.out.println("SUBJECT FIRST JOB NEXT");
+	}
+	abstract public void job();
+	public abstract void subject();
+}
+class AbstractDemoChild extends AbstractDemo
+{
+
+}
+public class AbstractTest
+{
+	public static void main(String[] args)
+	{
+		
+	}
+}
+javac AbstractTest.java
+AbstractTest.java:16: error: AbstractDemoChild is not abstract and does not override abstract method subject() in AbstractDemo
+class AbstractDemoChild extends AbstractDemo
+^
+1 error
+
+The error is fixed overriding the abstract methods in the child class (lines 272 to 283) :
+package core_java;
+
+abstract class AbstractDemo
+{
+   public void doHardWork()
+   {
+      System.out.println("HARDWORK = JOB");
+   }
+   public void subjectFirstJobNext()
+   {
+      System.out.println("SUBJECT FIRST JOB NEXT");
+   }
+   abstract public void job();
+   public abstract void subject();
+}
+class AbstractDemoChild extends AbstractDemo
+{
+   @Override
+   public void job()
+   {
+	
+   }
+   @Override
+   public void subject()
+   {
+	
+   }
+}
+public class AbstractTest
+{
+   public static void main(String[] args)
+   {
+		
+   }
+}
+
+Inside the child class i can write extra methods, that means--> with the abstract method implementations can be another methods: (line 320)
+package core_java;
+abstract class AbstractDemo
+{
+   public void doHardWork()
+   {
+      System.out.println("HARDWORK = JOB");
+   }
+   public void subjectFirstJobNext()
+   {
+      System.out.println("SUBJECT FIRST JOB NEXT");
+   }
+   abstract public void job();
+   public abstract void subject();
+}
+class AbstractDemoChild extends AbstractDemo
+{
+   @Override
+   public void job()
+   {
+      System.out.println("JOB");
+   }
+   @Override
+   public void subject()
+   {
+      System.out.println("SUBJECT");
+   }
+   public void hardWorkNeverFails()
+   {
+      System.out.println("HARD WORK NEVER FAILS");
+   }
+
+}
+public class AbstractTest
+{
+   public static void main(String[] args)
+   {
+		
+   }
+}
+
+The child class declaration in line 308 is not mandatory do it as abstract, it is optional
+
+If the class declared in line 308 is not abstract, is mandatory do the implementations from all the abstract methods in Parent Class inside the child class, other wise i will get 
+compile error:
+javac AbstractTest.java
+AbstractTest.java:15: error: AbstractDemoChild is not abstract and does not override abstract method job() in AbstractDemo
+class AbstractDemoChild extends AbstractDemo
+^
+1 error 
+
+If the class declared in line 308  is abstract, is NOT mandatory do the implementations of all the abstract methods from Parent class inside the child class and will no be compile
+error.
+
+conclusion: If the child class is not declared as abstract is mandatory override inside its body all the abstracts methods from Parent class.
+            If the child class is declared as abstract is not mandatory override inside its body all the abstracts methods from Parent class.
+            I can extend and create several child class from the last child class created as i need without the keyword abstract to do all the abstracts methods implementations declared 
+            inside the Parent class
+            
+the complete code is:
+package core_java;
+abstract class AbstractDemo
+{
+   public void doHardWork()
+   {
+      System.out.println("HARDWORK = JOB");
+   }
+   public void subjectFirstJobNext()
+   {
+      System.out.println("SUBJECT FIRST JOB NEXT");
+   }
+   abstract public void job();
+   public abstract void subject();
+}
+abstract class AbstractDemoChild extends AbstractDemo
+{
+   @Override
+   public void subject()
+   {
+      System.out.println("SUBJECT");
+   }
+   public void hardWorkNeverFails()
+   {
+      System.out.println("HARD WORK NEVER FAILS");
+   }
+}
+class AbstractDemoChild2 extends AbstractDemoChild
+{
+   @Override
+   public void job()
+   {
+      System.out.println("JOB");
+   }
+   public void salary()
+   {
+      System.out.println("SALARY");
+   }
+}  
+public class AbstractTest
+{
+   public static void main(String[] args)
+   {
+      AbstractDemo otvar = new AbstractDemo();		
+   }
+}
+line 395 launch out the following errors if is tried to create objects from the 2 abstracts classes inside the above code:
+>javac AbstractTest.java
+AbstractTest.java:43: error: AbstractDemo is abstract; cannot be instantiated
+      AbstractDemo otvar = new AbstractDemo();
+                           ^
+1 error
+
+javac AbstractTest.java
+AbstractTest.java:44: error: AbstractDemoChild is abstract; cannot be instantiated
+      AbstractDemoChild otvar = new AbstractDemoChild();
+                                ^
+1 error
+
+
+after the compiler doesn't show any error I gave the java command and the first thing is that control goes to the main method:
+there otvar object is created.
+1. Method doHardWork() is calling | accessing otvar, the program verify of what type is otvar, its type is AbstractDemoChild2, then the program does the method's resolution that
+is find is the doHardWork() method is implemented in class  AbstractDemoChild2--> No it is no implemented then the resolution methos search in its parent class AbstractDemoChild 
+where it doesn't exist, the the resolution method search inside its parent class AbstractDemo where the method is found and happily executed. In the say wat the program do the 
+flow to the other calls
+
+   public static void main(String[] args)
+   {
+      AbstractDemoChild2 otvar = new AbstractDemoChild2();
+      otvar.doHardWork();
+      otvar.subjectFirstJobNext();
+      otvar.subject();
+      otvar.hardWorkNeverFails();
+      otvar.job();
+      otvar.salary();		
+   }
+
+//package core_java;
+abstract class AbstractDemo
+{
+   public void doHardWork()
+   {
+      System.out.println("HARDWORK = JOB");
+   }
+   public void subjectFirstJobNext()
+   {
+      System.out.println("SUBJECT FIRST JOB NEXT");
+   }
+   abstract public void job();
+   public abstract void subject();
+}
+abstract class AbstractDemoChild extends AbstractDemo
+{
+   @Override
+   public void subject()
+   {
+      System.out.println("SUBJECT");
+   }
+   public void hardWorkNeverFails()
+   {
+      System.out.println("HARD WORK NEVER FAILS");
+   }
+}
+class AbstractDemoChild2 extends AbstractDemoChild
+{
+   @Override
+   public void job()
+   {
+      System.out.println("JOB");
+   }
+   public void salary()
+   {
+      System.out.println("SALARY");
+   }
+}  
+public class AbstractTest
+{
+   public static void main(String[] args)
+   {
+      AbstractDemoChild2 otvar = new AbstractDemoChild2();
+      otvar.doHardWork();
+      otvar.subjectFirstJobNext();
+      otvar.subject();
+      otvar.hardWorkNeverFails();
+      otvar.job();
+      otvar.salary();		
+   }
+}
+java AbstractTest
+HARDWORK = JOB
+SUBJECT FIRST JOB NEXT
+SUBJECT
+HARD WORK NEVER FAILS
+JOB
+SALARY
+
+the class in line 456 AbstractDemoChild2 is called a non-abstract class or fully implemented class->service provider class
+
+
+Q) HOW TO CREATE THE OBJECT IN JAVA?
+A/
+The standar way to create objects in java is:
+  1                                2
+classname         varname = new classname();
+
+
+AbstractDemoChild2 otvar = new AbstractDemoChild2();
+   1                                2
+classname         varname = new classname();
+
+1-->either abstract | non-abstract class
+2--> must be and should be non-abstract class
+
+NAC: No Abstract Class
+AC: Abstract class
+
+          NAC                       NAC
+AbstractDemoChild2 otvar = new AbstractDemoChild2();//valid
+
+by using parent the class reference, Can we create child the class object?
+A/
+Yes happily
+
+           AC                        NAC              
+AbstractDemoChild otvar = new AbstractDemoChild2(); // valid
+under parent the class reference I only can access parent the class methods:
+      AbstractDemoChild otvar = new AbstractDemoChild2();
+      otvar.job();
+      otvar.doHardWork();
+      otvar.subject();
+      otvar.hardWorkNeverFails();
+      otvar.subjectFirstJobNext();
+      
+if I try access to a method that no belong to the parent class i will receive the following compile error:
+>javac AbstractTest.java
+AbstractTest.java:56: error: cannot find symbol
+      otvar.salary();
+           ^
+  symbol:   method salary()
+  location: variable otvar of type AbstractDemoChild
+1 error 
+
+              AC                   AC
+AbstractDemoChild otvar = new AbstractDemoChild(); //invalid
+javac AbstractTest.java
+AbstractTest.java:56: error: AbstractDemoChild is abstract; cannot be instantiated
+      AbstractDemoChild otvar = new AbstractDemoChild();
+                                ^
+1 error
+
+ABSTRACT SUMMARY
+
+abstract is a keyword that is applicable at class level, methods level and interface level
+
+1. abstract vs class
+whenever I declare a class as abstract I cannot create objects from that class, if I try to create object for that class i will receive a compile error.
+2. Whenever we know the service that will be implemented in the future stage of the project.
+3. How to define the abstract method?
+A/  
+abstract <as> void | returntype methodname(---);
+<as> abstract void | returntype methodname(---);
+
+Whenever my class has a least an abstract method y must declare the class an abstract class.
+Is the class is having abstract methods the responsible to provide its implementations are the child classes.
+For abstract class is no possible create objects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

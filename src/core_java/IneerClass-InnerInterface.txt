@@ -1,0 +1,507 @@
+What is an interface?
+A/
+Interface is a service copy where I am going to maintain all my services in the form of abstract methods.
+========================================================================================================
+
+Java 1.7 & below   interfaces--> No implementations inside the interface, only can be taken abstract methods.
+-----------------------------    ^                                             ------------------------------
+
+Java 1.8 & onwards interfaces--> Implementations inside the interface, I can take the implementations in the form of 
+----------------------------
+                                 static methods and in the form of default methods
+                                ---------------                    ----------------
+                                
+Java 1.9 & onwards interfaces--> inside the interface I can take the implementations in the form of private static methods
+-----------------------------                                                                       ---------------------- 
+                                 and in the form of private methods
+                                                    ---------------
+
+extends vs implements-->
+
+
+                                                       Inner Class - Inner Interface
+                                                       ============================
+Inner Class:
+============
+
+A Class inside another class is called inner or nested class.
+An interface inside another interface is called inner or nested interface.
+
+********If I want to form a group of related things together as a single entity then I go for inner classes or inner interfaces******** 
+
+Syntax:
+-------
+
+class <Outter_class_name>
+{
+   ;;;;;;;;;;;;;;;;
+   class <Inner_class_name>
+   {
+      ;;;;;;;;;
+   }
+   static class <Inner_class_name>
+   {
+      ;;;;;;;;;
+   } 
+}
+
+Inside a static inner class (class InnerTwo) can be written non-static methods and static methods --> No problem at all. 
+         -----------------------             --------------------------------------      
+
+Inside a non-static inner class (class InnerOne) only can be written non-static methods otherwise I will get compile error:
+         -----------------------                 --------------------------------------                       ^^^^^^^^^^^^   
+
+//package core_java;
+
+class OuterOne
+{
+   public void doHardWork()
+   {
+      System.out.println("Outer Class: DO HARD WORK()-> NON-STATIC METHOD");
+   }
+   public static void job()
+   {
+      System.out.println("Outer Class: JOB()-> STATIC METHOD");
+   }
+   class InnerOne
+   {
+      public void doHardWork1()
+      {
+         System.out.println("Inner Class1: DO HARD WORK1()---> NON-STATIC METHOD");
+      }
+    /* public static void job1()
+      {
+         System.out.println("OC: JOB STATIC METHOD");
+      }*/
+   }
+   static class InnerTwo
+   {
+      public void doHardWork2()
+      {
+         System.out.println("static class InnerTwo --> DO HARD WORK2()-> NON-STATIC METHOD");
+      }
+      public static void job2()
+      {
+         System.out.println("static class InnerTwo --> JOB2()-> STATIC METHOD");
+      }
+   }
+}
+public class InnerClassTest
+{
+   public static void main(String[] args)
+   {
+      /*OuterOne otvarOO = new OuterOne();
+      otvarOO.doHardWork();
+      //otvarOO.job(); --> is a static method is better access it to class name:
+      OuterOne.job(); */
+
+      
+      OuterOne.InnerTwo otvar = new OuterOne.InnerTwo();
+      otvar.doHardWork2();
+      OuterOne.InnerTwo.job2();
+
+     /* OuterOne otvar = new OuterOne();
+      OuterOne.InnerOne otvar2 = otvar.new InnerOne();
+      otvar2.doHardWork1();*/
+   }
+}
+
+javac InnerClassTest.java
+InnerClassTest.java: error: Illegal static declaration in inner class OuterOne.InnerOne
+                                                                      =================
+      public static void job1()
+                         ^
+ modifier 'static' is only allowed in constant variable declarations
+ ===================================================================
+1 error: The method job1 cannot be declared static; static methods can only be declared in a static or top level type
+                                                    =================================================================
+                                                    
++-+-+-+-+-+-+--+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+non-static methods can be only access through object --> public void doHardWork(), doHardWork() is a non-static method declared inside 
+====================================================     (or belonging) to class OuterOne, to access its data must be through object:
+                                                    
+                                                         class OuterOne
+														 {
+														   public void doHardWork()
+														   {
+														      System.out.println("Outer Class: DO HARD WORK()-> NON-STATIC METHOD");
+														   }
+														 }
+														 
+														 OuterOne otvarOO = new OuterOne();
+                                                         otvarOO.doHardWork();
+
+
+the better practice to access to an static method is through class name --> public static void job(), job() is a static method 
+=======================================================================     declared inside (or belonging) to class OuterOne, to access 
+                                                                            its data must be through class name:
+                                                                            
+	                                                         class OuterOne
+															 {
+															   public void doHardWork()
+															   {
+															      System.out.println("Outer Class: DO HARD WORK()-> NON-STATIC METHOD");
+															   }
+															 }  
+															 
+															 OuterOne.job();  
+                                                                            
+
+To access data inside a static method -->public static void job2(), job2() method belongs to static class InnerTwo, to get its data,
+=================================================================================================================================== 
+is through class name:
+=====================
+
+class OuterOne
+{
+   static class InnerTwo
+   {
+      public static void job2()
+      {
+         System.out.println("static class InnerTwo --> JOB2()-> STATIC METHOD");
+      }
+   }
+}
+   
+OuterOne.InnerTwo.job2();
+
+
+To access data inside a non-static method that belongs to a static inner class to get it is through object:
+===========================================================================================================
+class OuterOne
+{
+   static class InnerTwo
+   {
+      public void doHardWork2()
+      {
+         System.out.println("static class InnerTwo --> DO HARD WORK2()-> NON-STATIC METHOD");
+      }
+   }
+}
+
+OuterOne.InnerTwo otvar = new OuterOne.InnerTwo();
+otvar.doHardWork2();
+
+To access data inside a non-static Inner Class --> class InnerOne and a non-static method-->public void doHardWork1() is through object:
+=======================================================================================================================================
+
+class OuterOne
+{
+   class InnerOne
+   {
+      public void doHardWork1()
+      {
+         System.out.println("Inner Class1: DO HARD WORK1()---> NON-STATIC METHOD");
+      }
+}
+
+OuterOne otvar = new OuterOne();
+OuterOne.InnerOne otvar2 = otvar.new InnerOne();
+otvar2.doHardWork1();
+
+1 create object from Outer Class -->OuterOne otvar = new OuterOne();
+2 On otvar (OuterOne's object) is needed to create an object (otvar2)  from the Inner class--> otvar.new InnerOne(); 
+OuterOne.InnerOne otvar2 = otvar.new InnerOne();
+3 On otvar2 I can call the method-->otvar2.doHardWork1();
+
+class Loan //OuterClass
+{
+   ;;;;;;;;  //Loan's features
+   class Personal_Loan //InnerClass
+   {
+      ;;;;;;;;
+   }
+   class Home_Loan //InnerClass
+   {
+      ;;;;;;;;
+   }
+   class Car_Loan //InnerClass
+   {
+      ;;;;;;;;
+   }
+}
+
+All the Loan classes belong to a same category --> Classes Personal_Loan, Car_Loan, Home_Loan belong to the Loan category.
+If I want to group related things as a single entity, then I go for inner classes mechanism.
+
+........................................................................................................................................
+
+Inner Interface:
+================
+
+interface <Outter_interface_name> //-->By default every Outer interface becomes of type public and abstract
+{
+   ;;;;;;;;;;;;;;;;
+   
+   interface <Inner_interface_name> //--> by default every inner interface becomes of type static
+   {
+      ;;;;;;;;;
+   }
+   interface <Inner_interface_name> //--> by default every inner interface becomes of type static
+   {
+      ;;;;;;;;;
+   }
+}
+
+By default every Outer interface becomes of type public and abstract
+====================================================================
+
+by default every inner interface becomes of type static.
+========================================================
+
+The outer interface can hold any number of inner interfaces.
+
+
+interface I1
+{
+   void hardWork1();
+   void hardWork2();
+
+   interface I2
+   {
+      void hardWork1();
+      void hardWork3();
+      void hardWork4();
+   }
+}
+
+The service hardWork1() is a common service to both interfaces--> I1 and I2
+
+Whenever a class (I1Impl) implements a Interface, all the methods inside the interface must be implemented:
+
+interface I1
+{
+   void hardWork1();
+   void hardWork2();
+
+   interface I2
+   {
+      void hardWork1();
+      void hardWork3();
+      void hardWork4();
+   }
+}
+class I1Impl implements I1
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I1Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork2()
+   {
+       System.out.println("class I1Impl: hardWork2()");  
+   }  
+}
+class I2Impl implements I1.I2
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I2Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork3()
+   {
+       System.out.println("class I2Impl: hardWork3()");  
+   }
+   @Override
+   public void hardWork4()
+   {
+       System.out.println("class I2Impl: hardWork4()");  
+   }   
+}
+
+It is possible provide implementations combine together, as there is a common service (hardWork1()) in combine mode is enough provide its 
+implementations only one time:
+
+//package core_java;
+
+interface I1
+{
+   void hardWork1();
+   void hardWork2();
+
+   interface I2
+   {
+      void hardWork1();
+      void hardWork3();
+      void hardWork4();
+   }
+}
+class I1Impl implements I1
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I1Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork2()
+   {
+       System.out.println("class I1Impl: hardWork2()");  
+   }  
+}
+class I2Impl implements I1.I2
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I2Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork3()
+   {
+       System.out.println("class I2Impl: hardWork3()");  
+   }
+   @Override
+   public void hardWork4()
+   {
+       System.out.println("class I2Impl: hardWork4()");  
+   }   
+}
+class I1I2Impl implements I1,I1.I2
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I1I2Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork3()
+   {
+       System.out.println("class I1I2Impl: hardWork3()");  
+   }
+   @Override
+   public void hardWork4()
+   {
+       System.out.println("class I1I2Impl: hardWork4()");  
+   }
+   @Override
+   public void hardWork2()
+   {
+       System.out.println("class I1I2Impl: hardWork2()");  
+   }  
+
+}
+public class InnerInterfaceTest
+{
+   public static void main(String[] args)
+   {
+      I1 otvar = new I1(); //highly impossible
+   }
+}
+
+javac InnerInterfaceTest.java
+InnerInterfaceTest.java:74: error: I1 is abstract; cannot be instantiated
+                                   ======================================
+      I1 otvar = new I1();
+                 ^
+1 error 
+
+//package core_java;
+
+interface I1
+{
+   void hardWork1();
+   void hardWork2();
+
+   interface I2
+   {
+      void hardWork1();
+      void hardWork3();
+      void hardWork4();
+   }
+}
+class I1Impl implements I1
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I1Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork2()
+   {
+       System.out.println("class I1Impl: hardWork2()");  
+   }  
+}
+class I2Impl implements I1.I2
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I2Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork3()
+   {
+       System.out.println("class I2Impl: hardWork3()");  
+   }
+   @Override
+   public void hardWork4()
+   {
+       System.out.println("class I2Impl: hardWork4()");  
+   }   
+}
+class I1I2Impl implements I1,I1.I2
+{
+   @Override
+   public void hardWork1()
+   {
+       System.out.println("class I1I2Impl: hardWork1()");  
+   }
+   @Override
+   public void hardWork3()
+   {
+       System.out.println("class I1I2Impl: hardWork3()");  
+   }
+   @Override
+   public void hardWork4()
+   {
+       System.out.println("class I1I2Impl: hardWork4()");  
+   }
+   @Override
+   public void hardWork2()
+   {
+       System.out.println("class I1I2Impl: hardWork2()");  
+   }  
+}
+public class InnerInterfaceTest
+{
+   public static void main(String[] args)
+   {
+      //I1 otvar = new I1(); --> highly impossible -->I1 is abstract; cannot be instantiated
+      I1I2Impl otvar = new I1I2Impl();
+      otvar.hardWork1();
+      otvar.hardWork2();
+      otvar.hardWork3();
+      otvar.hardWork4();
+   }
+}
+..........................................................................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

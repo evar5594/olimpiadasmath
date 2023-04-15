@@ -1,0 +1,421 @@
+Through inheritance all the parents are having by default will be available to every child.
+Through inheritance whatever the parents are having by default will be available to every child, if the child  is not satisfy with the parent class implementations they have the 
+ability to override the methods with its own implementations--> Mechanism of overriding
+
+class Parent
+{
+public void study()
+{
+System.out.println("PC: study()");
+}
+public void job()
+{
+System.out.println("PC: job()");
+}
+public void play()
+{
+System.out.println("PC: play()");
+}
+public void money()
+{
+System.out.println("PC: money()");
+}
+}
+
+in class Parent there are 4 methods at class level
+there are 4 methods at class level, these methods are extended to Child class, Child class is no satisfied with study and job methods implementations, Child class has the ability to
+override them as following:
+
+//package core_java;
+class Parent
+{
+public void study()
+{
+System.out.println("PC: study()");
+}
+public void job()
+{
+System.out.println("PC: job()");
+}
+public void play()
+{
+System.out.println("PC: play()");
+}
+public void money()
+{
+System.out.println("PC: money()");
+}
+}
+class Child extends Parent
+{
+public void study()
+{
+System.out.println("CC: I don't study()");
+}
+public void job()
+{
+System.out.println("CC: I don't want job()");
+}
+public void friends()
+{
+System.out.println("CC: friends()");
+}
+}
+public class OverRidingTest
+{
+public static void main(String[] args)
+{
+
+}
+}
+
+in order to convey that study and job are overriding methods java has the concept called ANNOTATIONS
+
+Annotations:
+------------
+Every annotation in java start with @
+@-->indicates annotations
+@Override
+@SupressWarnings
+@FunctionalInterface
+@;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;
+
+
+java.lang.Override
+
+
+@Target(value={METHOD})
+@Retention(value=SOURCE)
+
+
+Indicates that a method declaration is intended to override a method declaration in a supertype. If a method is annotated with this annotation type compilers are required to 
+generate an error message unless at least one of the following conditions hold: 
+•The method does override or implement a method declared in a supertype. 
+•The method has a signature that is override-equivalent to that of any public method declared in Object. 
+
+
+Every annotation is a program which perform some specific task.
+Whenever I use the @Override over a method it will check both the parent and child to see is the method signature is the same.
+
+OverRidingTest.java:33: error: method does not override or implement a method from a super type
+@Override
+^
+1 error --> if the @Override is on wrong place--> on a method that is no extends from parent class
+
+A functionality of annotations is that allows to see easy which methods have been override-->
+annotations check if both parent and child have got the same methods--> the extended by keyword extends. 
+
+Annotations Rules:
+-----------------
+1. if in the parent class the method override by the child is no static nor final the overriding will work.
+1. The child class can override if the parent method is not declared neither static nor final, if the method in parent class is declared as final or static there will be a
+compile error:
+
+ error: study() in Child cannot override study() in Parent
+public void study()
+            ^
+  overridden method is static
+OverRidingTest.java:23: error: method does not override or implement a method from a super type
+@Override
+^
+OverRidingTest.java:33: error: method does not override or implement a method from a super type
+@Override
+^
+3 errors
+The parent class method neither must be declare as a static, final nor private
+
+Method hiding:
+If the both methods are declared as static, the @Override is NOT allowed and is the concept of hiding.
+Method hiding:Whenever the both parent and child methods should be of type static.
+
+If the parent method is declared as final child class will cannot override the method:
+OverRidingTest.java:24: error: study() in Child cannot override study() in Parent
+public void study()
+            ^
+  overridden method is final
+1 error
+
+The child class method can be declare with <as> final--> there are no problem at all--> @Override can be done
+
+To work to overriding first must be create an Object Type variable 
+
+Parent OTvar = new Parent();
+
+Whenever I am creating parent class's object, under the parent class object reference (OTvar) I can access all the parent class methods.
+
+In overloading method resolution happen or run in reference type.
+In overloading method execution happen or run in reference type.
+
+In overriding method resolution happen or run in reference type.
+In overriding method execution happen or run in runtime object.
+
+In hiding method resolution happen or run in reference type.
+In hiding method execution happen or run in reference type.
+
+  Parent OTvar =   new Parent();
+reference type     runtime object
+
+In overriding, the method resolution happens or run in reference type area.
+In overriding, the method execution happens or run in runtime object area.
+Overriding is known as runtime polymorphism or late binding.
+
+1. Method resolution:---> Means method is there or not?
+public class OverRidingTest
+{
+public static void main(String[] args)
+{
+Parent OTvar = new Parent(); -->whenever i am creating parent's class object, under the parent's class reference i can execute only parent's class methods
+OTvar.study();
+OTvar.job();
+OTvar.play();
+OTvar.money();
+}
+}
+
+Method resolution find all the methods in class Parent
+
+2. Method execution happen or run in runtime object:
+java OverRidingTest
+PC: study()
+PC: job()
+PC: play()
+PC: money()
+
+Child's class object:
+ 
+ Child OTvar = new Child();--> Whenever I am creating child's class object, under class reference I can access both Parent and Child class methods
+ 
+ Child OTChildvar = new Child();
+OTChildvar.study();
+OTChildvar.job();
+OTChildvar.play();
+OTChildvar.money();
+OTChildvar.friends();
+
+method resolution and then method execution:
+
+>java OverRidingTest
+CC: I don't study()
+CC: I don't want job()
+PC: play()
+PC: money()
+CC: friends()
+
+By using Parent's class reference I can create a Child class Object--> valid--> under the Parent's class reference I can access only to a Parent's class methods.
+
+To override the methods signature must be the same, that is all must be iqual except the implementation <as> returntype and method name equal.
+
+Method resolution (is there or not the method) to overloading, overriding and hiding happen or run in reference type and overriding execution happens at runtime object.
+
+Practice following and anticipating the compilation and execution results.
+
+OVERRIDING SUMMARY:
+-------------------
+Q) What is overriding?
+A/
+Through inheritance whatever the parents is having by default will be available to every child, if the children are not satisfy with the Parent class implementations, 
+then Children have the ability to override the methods with its own implementations.--> Mechanism of overriding.
+
+OVERRIDING-->static methods can override non-static methods? 
+             A/
+             No it is not possible.
+             Can both methods (Parent and Child) be static?
+             A/
+             Yes, it is method hiding in which the method resolution and method execution happens at Reference type.
+             final methods can be override in the Child class Parent methods that doesn't be final nor static.
+             
+Q) CAN WE OVERRIDE PARENT'S PRIVATE METHODS IN CHILD CLASS?
+A/
+Never:
+ error: illegal combination of modifiers: public and private
+private public void studying()
+                    ^
+HidingMethodTest.java:23: error: method does not override or implement a method from a supertype
+@Override
+^
+2 errors
+
+The method stydying in type Padre can only set one of public/protected/private.
+private methods we cannot override because private scope is within the class.
+
+Whenever I am going to @Override the biggest is public follow by protected, default and private.
+Q) WHO IS THE BIGGEST <as>?
+A/
+Public.
+Whenever I go to override and I need to increase the scope of the <as> I can do it whereas decrease it I mustn’t do it
+
+if the scope is decrease the compilar launch the following:
+ error: cash() in Hijo cannot override cash() in Padre
+protected void cash()
+               ^
+  attempting to assign weaker access privileges; was public
+1 error
+
+INTERVIEW QUESTIONS --> WHAT IS THE DIFFERENCE BETWEEN FINAL FINALLY FINALIZE?
+===============================================================================
+
+Q) WHAT IS FINAL?
+-----------------
+final is a keyword which is applicable up to:
+1. class level
+2. variable level
+3. methods level
+4. enums level
+
+whenever I declare a class as a final I cannot inherit from that class, if I am trying to inherit that class i will receive a compile error. A final class cannot be extended:
+javac OverRidingTest.java
+OverRidingTest.java:21: error: cannot inherit from final Parent
+class Child extends Parent
+                    ^
+1 error 
+
+Whenever a class is defined as final its variables and methods are not finals.
+Whenever a method is defined as final it cannot be @Overrided:
+
+javac OverRidingTest.java
+OverRidingTest.java:29: error: job() in Child cannot override job() in Parent
+final public void job()
+                  ^
+  overridden method is final
+1 error
+
+Whenever a variable is declare as a final its value cannot be changed.
+in a final variable re-assignment is not allowed:
+
+>javac OverRidingTest.java
+OverRidingTest.java:7: error: cannot assign a value to final variable practHours
+practHours = 12;
+^
+1 error
+
+enums 
+suppose byte short int long float double String boolean is there, and I want to define my own types like sablecode, savacode, then i go for enums.
+                   char
+                   
+Q) WHAT IS POLYMORPHISM?
+A/
+A single method with the same name is possible represent it in different forms(overloading) that means the single and same method support different implementations.
+WHAT IS POLYMORPHISM?--> representing many things in a single form-->mechanism of polymorphism --> overloading and overriding
+
+Q)WHAT IS OVERLOADING?
+A/
+Is a concept which is get the dynamism at 2 levels:
+- method level-->same method name with different parameters
+- constructor level
+
+Q)WHAT IS OVERRIDING?
+A/
+Through inheritance whatever the parents are having by default will be available to every child, if the child is not satisfy with the parents methods implementations the children
+have the ability to override the parents implementations and coded its own implementations.  
+   
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
