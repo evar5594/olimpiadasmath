@@ -7,6 +7,8 @@ public class Job2 {
 		
 		System.out.println("Line added at the same time, here by user git evargasm19");
 		System.out.println("Line 2 added at the same time, here by user git evargasm19");
+		
+		System.out.println("Line added at the same time, here by user git evargasm19 HARD WORK = JOB");
 
        System.out.println("Line added at the same file and time by the cloner developer");
        System.out.println("Line added at the same file and time by the cloner developer");
