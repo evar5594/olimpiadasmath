@@ -11,6 +11,10 @@ public class Job2 {
        System.out.println("Line added at the same file and time by the cloner developer");
        System.out.println("Line added at the same file and time by the cloner developer");
 
+       System.out.println("9 hours  practice");
+       System.out.println("9 hours  practice");
+
+
 	}
 
 }
