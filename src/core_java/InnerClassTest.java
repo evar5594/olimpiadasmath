@@ -52,6 +52,7 @@ public class InnerClassTest
       OuterOne otvar = new OuterOne();
       OuterOne.InnerOne otvar2 = otvar.new InnerOne();
       otvar2.doHardWork1();
+      System.out.println("Hello");
    }
-  System.out.println("Hello");
+  
 }
